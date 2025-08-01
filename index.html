@@ -1,59 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>IsLAND Laboratorie Mini App</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Island Laboratorie </title>
   <link rel="icon" type="image/png" href="assets/images/ISLAND-LOGO.svg" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-   <link rel="stylesheet" href="style.css" />
-   <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Noto+Serif+Khmer&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Kanit', sans-serif;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 2.5s;
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+      /* margin-bottom: 20px; */
+      animation: fadeInUp 1s ease;
+    }
+
+    .company-text {
+      text-align: center;
+      color: #0ebecb;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .kh {
+      font-family: 'Khmer Chhay Round 1', serif;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .en {
+      font-size: 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <header class="header">
-   <div class="logo-title">
-  <img src="assets/images/ISLAND-LOGO.svg" alt="Logo" class="logo" />
-  <div class="company-text">
-    <p class="kh">សហគ្រាសផលិតឱសថ អាយលែន</p>
-    <p class="en">ISLAND LABORATORIE CO., LTD.</p>
+  <div class="splash-container">
+    <img src="assets/images/ISLAND-LOGO.png" alt="Company Logo" />
+    <div class="company-text">
+      <p class="kh">សហគ្រាសផលិតឱសថ អាយលែន</p>
+      <p class="en">ISLAND LABORATORIE CO., LTD.</p>
+    </div>
   </div>
-</div>
 
-    <input type="search" placeholder="Search" class="search-bar" />
-    <div class="filter-tabs">
-      <button class="tab active">Trending</button>
-      <button class="tab">Recent</button>
-      <button class="tab">Popular</button>
-      <button class="tab">Top</button>
-    </div>
-  </header>
-
-  <section class="featured">
-    <h2>Featured</h2>
-    <div class="card-grid" id="featured-items">
-      <!-- Inject product cards via JS -->
-    </div>
-  </section>
-
-  <section class="trending">
-    <div class="section-header">
-      <h2>Trending now</h2>
-      <a href="#">See all</a>
-    </div>
-    <div class="card-grid" id="trending-items">
-      <!-- Inject product cards via JS -->
-    </div>
-  </section>
-
-  <nav class="bottom-nav">
-    <button>Home</button>
-    <button>Categories</button>
-    <button class="plus">＋</button>
-    <button>Favorites</button>
-    <button>Profile</button>
-  </nav>
-
-  <script src="script.js"></script>
+  <script>
+    setTimeout(() => {
+      // Redirect after splash if needed
+      //  window.location.href = 'home.html';
+    }, 2500);
+  </script>
 </body>
 </html>
