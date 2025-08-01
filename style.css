@@ -1,0 +1,195 @@
+/* Base Styles */
+body {
+  font-family: 'Kanit', sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #111;
+}
+
+.header {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.company-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.05;
+}
+
+.company-text .kh {
+  font-family: 'Khmer Chhay Round 1', serif;
+  font-size: 14px;
+  color: #0ebecb;
+}
+
+.company-text .en {
+  font-size: 11px;
+  color: #0ebecb;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  margin-top: 0.5rem;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: #000;
+  color: #fff;
+}
+
+/* Section Layout */
+.featured,
+.trending {
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Card Grid Layout */
+.card-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 160px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 0 10px #ccc;
+  overflow: hidden;
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.card .card-body {
+  padding: 0.5rem;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #444;
+  flex: 1;
+}
+
+.plus {
+  font-size: 1.5rem;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (min-width: 600px) {
+  .card-grid {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: hidden;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    flex: 1 1 calc(33.33% - 1rem);
+    max-width: calc(33.33% - 1rem);
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .company-text .kh {
+    font-size: 16px;
+  }
+
+  .company-text .en {
+    font-size: 13px;
+  }
+
+  .search-bar {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+  }
+}
