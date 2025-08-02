@@ -20,6 +20,12 @@ const sampleProducts = [
     views: "1.8k",
     timestamp: "22-18-23"
   },
+   {
+    name: "Gas Mask Bear",
+    img: "assets/images/products/thermometer.png",
+    views: "1.8k",
+    timestamp: "22-18-23"
+  },
   {
     name: "Blue Punk",
     img: "assets/images/products/ecg.png",
@@ -43,12 +49,31 @@ function renderCards(container, items) {
 renderCards(featuredItems, sampleProducts);
 renderCards(trendingItems, [sampleProducts[1]]);
 
-// Optional: handle tab switching
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
 
+
+// Auto-scroll the featured section
+const featuredGrid = document.getElementById("featured-items");
+
+let scrollPos = 0;
+let direction = 1; // 1 = right, -1 = left
+
+function autoScrollFeatured() {
+  if (!featuredGrid) return;
+
+  scrollPos += direction * 1.2; // scroll speed
+
+  // Reverse direction at ends
+  if (scrollPos >= featuredGrid.scrollWidth - featuredGrid.clientWidth) {
+    direction = -1;
+  } else if (scrollPos <= 0) {
+    direction = 1;
+  }
+
+  featuredGrid.scrollTo({
+    left: scrollPos,
+    behavior: "smooth"
+  });
+}
+
+setInterval(autoScrollFeatured, 30); // scroll every 30ms
 

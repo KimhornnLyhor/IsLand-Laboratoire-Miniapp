@@ -2,111 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IsLAND Laboratory Mini App</title>
+  <link rel="icon" href="assets/icons/favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Noto+Serif+Khmer&display=swap" rel="stylesheet">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <title>Island Laboratorie</title>
-  <link rel="icon" type="image/png" href="assets/images/ISLAND-LOGO.svg" />
+<i class="bi bi-house-heart-fill"></i>
+<i class="bi bi-heart-fill"></i></head>
+<script>
+  const container = document.getElementById("featured-items");
 
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top center, #e6fcff 0%, #a0e7f7 40%, #66d1f2 70%, #38dff8 90%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-family: 'Kanit', sans-serif;
-      flex-direction: column;
-      padding: 20px;
-      box-sizing: border-box;
-      color: white;
+  let scrollAmount = 0;
+  const scrollStep = 1;
+  const scrollSpeed = 10; // ms
+
+  function autoScroll() {
+    if (!container) return;
+
+    scrollAmount += scrollStep;
+    if (scrollAmount >= container.scrollWidth - container.clientWidth) {
+      scrollAmount = 0;
     }
 
-    .splash-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 1;
-      transition: opacity 2s ease; /* slower fade-out */
-      max-width: 90vw;
-    }
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  }
 
-    .splash-container.fade-out {
-      opacity: 0;
-    }
+  setInterval(autoScroll, scrollSpeed);
+</script>
 
-    img {
-      width: 40vw;
-      max-width: 200px;
-      height: auto;
-      animation: fadeInUp 1s ease;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
-    }
 
-    .company-text {
-      text-align: center;
-      color: white;
-      animation: fadeInUp 1.5s ease;
-      margin-top: 10px;
-      text-shadow: 0 0 5px rgb(0, 180, 190);
-    }
-
-    .kh {
-      font-family: 'Khmer Chhay Round 1', serif;
-      font-size: clamp(20px, 5vw, 32px);
-      margin: 0;
-    }
-
-    .en {
-      font-size: clamp(16px, 4vw, 24px);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin: 0;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 400px) {
-      img {
-        width: 60vw;
-      }
-      .kh {
-        font-size: 18px;
-      }
-      .en {
-        font-size: 14px;
-      }
-    }
-  </style>
-</head>
 <body>
-  <div class="splash-container" id="splash">
-    <img src="assets/images/ISLAND-LOGO.png" alt="Company Logo" />
-    <div class="company-text">
-      <p class="kh">សហគ្រាសផលិតឱសថ អាយលែន</p>
-      <p class="en">ISLAND LABORATORIE CO., LTD.</p>
+  <header class="header">
+   <div class="logo-title">
+  <img src="assets/images/ISLAND-LOGO.svg" alt="Logo" class="logo" />
+  <div class="company-text">
+    <p class="kh">សហគ្រាសផលិតឱសថ អាយលែន</p>
+    <p class="en">ISLAND LABORATORIE CO., LTD.</p>
+  </div>
+</div>
+
+    <input type="search" placeholder="Search" class="search-bar" />
+    <di class="filter-tabs">
+      </div>
+      </header>
+      <!-- <button class="tab active">Catalogue</button> -->
+  <div class="account-box">
+  
     </div>
   </div>
 
-  <script>
-    const splash = document.getElementById('splash');
-    setTimeout(() => {
-      splash.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = 'home.html';
-      }, 2000); // matches the 2s fade-out duration
-    }, 3000); // wait 3s before starting fade-out
-  </script>
+  <div class="grid-menu">
+    <a href="pages/catalogue.html">
+      <img src="assets/images/products/thermometer.png" alt="">
+      <span>Product Catalogue</span>
+    </a>
+     <a href="pages/marketing.html">
+      <img src="assets/images/products/marketing.png" alt="">
+      <span>Marketing Scheme</span>
+    </a>
+    <a href="pages/calendar.html">
+      <img src="assets/images/products/ecg.png" alt="">
+      <span>Calendar</span>
+    </a>
+   
+    <a href="pages/tips.html">
+      <img src="assets/images/products/tips.png" alt="">
+      <span>Health Education tips</span>
+    </a>
+  </div>
+  <section class="featured">
+    <h2>Featured</h2>
+    <div class="card-grid" id="featured-items">
+      <!-- Inject product cards via JS -->
+    </div>
+  </section>
+
+  <div class="bottom-nav">
+    <button onclick="location.href='index.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+        <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707z"/>
+        <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018"/>
+      </svg>
+      <div>Home</div>
+    </button>
+<button onclick="location.href='pages/categories.html'">
+      Search
+    </button>
+    <button onclick="location.href='pages/catalogue.html'">
+      Catalogue
+    </button>
+    <!-- <button class="plus">＋</button>
+    <button onclick="location.href='pages/favorites.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+  </svg></button> -->
+    <button>About Us</button>
+    
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
