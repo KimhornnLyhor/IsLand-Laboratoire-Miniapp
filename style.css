@@ -129,7 +129,7 @@ body {
 }
 
 .grid-menu a {
-  background: #b2ebf2; /* Light aqua tile */
+  background: #41ebf7bb; /* Light aqua tile */
   border-radius: 16px;
   padding: 20px 10px;
   color: #004d60; /* Dark blue-green text */
@@ -143,16 +143,25 @@ body {
 }
 
 .grid-menu a:hover {
-  background-color: #a0e1e9;
+  background-color: #0096D1;
   transform: translateY(-4px);
 }
 
 .grid-menu img {
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 10px;
   object-fit: contain;
+  box-shadow: #004d60;
 }
+.calendar-icon {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  box-shadow: #004d60;
+}
+
 
 /* Bottom Navigation */
 .bottom-nav {
@@ -344,12 +353,12 @@ body {
   color: #0ebecb;
   padding: 0 0.5rem 0.75rem;
 }
-.icon-button {
+/* .icon-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
+  padding: 16px 16px;
   background-color: #e0f9ff;
   border: none;
   border-radius: 16px;
@@ -359,15 +368,15 @@ body {
   cursor: pointer;
   transition: background-color 0.2s ease;
   width: 100px; /* Optional: control button width */
-  text-align: center;
-}
+  /* text-align: center; */
+/* } */ 
 
-.icon-button img {
+/* .icon-button img {
   width: 20px;
   height: 20px;
   margin-bottom: 6px;
   object-fit: contain;
-}
+} */
 
 
 /* Responsive Typography & Layout */
