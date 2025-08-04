@@ -45,17 +45,22 @@
     <p class="en">ISLAND LABORATORIE CO., LTD.</p>
   </div>
 </div>
-
-    <input type="search" placeholder="Search" class="search-bar" />
-    <di class="filter-tabs">
-      </div>
-      </header>
-      <!-- <button class="tab active">Catalogue</button> -->
-  <div class="account-box">
-  
-    </div>
-  </div>
-
+ </header>
+<div class="search-container">
+  <span class="search-icon">
+    <i class="bi bi-search"></i>
+  </span>
+  <input type="search" placeholder=" Search products, categories..." class="search-bar" aria-label="Search" />
+</div>
+</div>
+ 
+<!-- <div class="account-box">
+  <div class="profile-image-container">
+    <img src="assets/images/profile1.jpg" alt="Profile 1" class="profile-image" />
+    <img src="assets/images/profile2.jpg" alt="Profile 2" class="profile-image" />
+    <img src="assets/images/profile3.jpg" alt="Profile 3" class="profile-image" />
+  </div> -->
+</div>
   <div class="grid-menu">
     <a href="pages/catalogue.html">
       <img src="assets/images/products/thermometer.png" alt="">
@@ -83,30 +88,28 @@
   </section>
 
   <div class="bottom-nav">
-    <button onclick="location.href='home.html'">
+    <button onclick="location.href='home.html'" class="icon-button">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
         <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707z"/>
         <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018"/>
       </svg>
       <div>Home</div>
     </button>
-<button onclick="location.href='pages/categories.html'">
+<button onclick="document.querySelector('.search-bar').focus()" class="icon-button">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
   </svg>
   <div>Search</div>
 </button>
-    <button onclick="location.href='pages/catalogue.html'">
-      Catalogue
-    </button>
-    <!-- <button class="plus">＋</button>
-    <button onclick="location.href='pages/favorites.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-  </svg></button> -->
-    <button>About Us</button>
-    
-  </div>
-
+</button>
+<button onclick="location.href='pages/catalogue.html'" class="icon-button">
+  <img src="assets/icons/about-us.svg" alt="Catalogue Icon" />
+  <span>Catalogue</span>
+</button>
+<button onclick="location.href='pages/about-us.html'" class="icon-button">
+  <img src="assets/icons/about-us.svg" alt="About Us Icon" />
+  <span>About Us</span>
+</button>
   <script src="script.js"></script>
 </body>
 </html>
