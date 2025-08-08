@@ -3,49 +3,50 @@ const trendingItems = document.getElementById("trending-items");
 
 const sampleProducts = [
   {
-    name: "Gas Mask Bear",
-    img: "assets/images/products/thermometer.png",
-    views: "1.8k",
-    timestamp: "22-18-23"
+    id: 1,
+    name: "THOXTRIM-480",
+    img: "assets/images/products/BOX-THOXTRIM-480.png"
   },
   {
-    name: "Blue Punk",
-    img: "assets/images/products/ecg.png",
-    views: "1.2k",
-    timestamp: "22-18-23"
-  },
-    {
-    name: "Gas Mask Bear",
-    img: "assets/images/products/thermometer.png",
-    views: "1.8k",
-    timestamp: "22-18-23"
-  },
-   {
-    name: "Gas Mask Bear",
-    img: "assets/images/products/thermometer.png",
-    views: "1.8k",
-    timestamp: "22-18-23"
+    id: 2,
+    name: "ILAMINE-4",
+    img: "assets/images/products/ILAMINE-4.png"
   },
   {
-    name: "Blue Punk",
-    img: "assets/images/products/ecg.png",
-    views: "1.2k",
-    timestamp: "22-18-23"
+    id: 3,
+    name: "Toxic Panda",
+    img: "assets/images/products/panda.png"
+  },
+  {
+    id: 4,
+    name: "Red Lizard",
+    img: "assets/images/products/lizard.png"
+  },
+  {
+    id: 5,
+    name: "Green Bot",
+    img: "assets/images/products/robot.png"
   }
 ];
 
 function renderCards(container, items) {
   container.innerHTML = items.map(item => `
     <div class="card">
-      <img src="${item.img}" alt="${item.name}" />
+      <a href="pages/detail.html?id=${item.id}">
+       <img src="${item.img}" alt="${item.name}" />
+      </a>
       <div class="card-body">
-        <p>${item.name}</p>
-        <button>Place a bid</button>
+        <a href="pages/detail.html?id=${item.id}" class="card-name">
+          <p>${item.name}</p>
+        </a>
+        <button onclick="location.href='pages/detail.html?id=${item.id}'">Read More</button>
       </div>
     </div>
   `).join('');
 }
 
+
+// Render product cards into the containers
 renderCards(featuredItems, sampleProducts);
 renderCards(trendingItems, [sampleProducts[1]]);
 
@@ -75,5 +76,5 @@ function autoScrollFeatured() {
   });
 }
 
-setInterval(autoScrollFeatured, 30); // scroll every 30ms
+setInterval(autoScrollFeatured, 30);
 
