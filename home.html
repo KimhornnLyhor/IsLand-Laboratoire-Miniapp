@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Noto+Serif+Khmer&display=swap" rel="stylesheet">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
 <i class="bi bi-house-heart-fill"></i>
 <i class="bi bi-heart-fill"></i></head>
 <i class="bi bi-search"></i>
@@ -46,45 +50,82 @@
   </div>
 </div>
  </header>
-<div class="search-container">
-  <span class="search-icon">
-    <i class="bi bi-search"></i>
-    <i class="bi bi-info-circle-fill"></i>
-    <i class="bi bi-book-half"></i>
-  </span>
+ <div></div>
+<nav class="nav-tabs">
+  <a href="catalogue.html" class="tab active">
+    <i class="fas fa-store"></i>
+    <span>Catalogue</span>
+  </a>
+  <a href="calendar.html" class="tab">
+    <i class="fas fa-calendar-alt"></i>
+    <span>Calendar</span>
+  </a>
+  <a href="offers.html" class="tab">
+    <i class="fas fa-bullhorn"></i>
+    <span>Offers</span>
+  </a>
+  <a href="tips.html" class="tab">
+    <i class="fas fa-lightbulb"></i>
+    <span>Tips</span>
+  </a>
+</nav>
+
+
 <input type="search" 
        id="searchInput"
        placeholder="Search products, categories..." 
        class="search-bar" 
        aria-label="Search" />
-  <button class="search-button" onclick="searchProducts()">
-    <i class="bi bi-search"></i>
+  <!-- <button class="search-button" onclick="searchProducts()">
+    <i class="bi bi-search"></i> -->
 </div>
- 
-<!-- <div class="account-box">
-  <div class="profile-image-container">
-    <img src="assets/images/profile1.jpg" alt="Profile 1" class="profile-image" />
-    <img src="assets/images/profile2.jpg" alt="Profile 2" class="profile-image" />
-    <img src="assets/images/profile3.jpg" alt="Profile 3" class="profile-image" />
-  </div> -->
-<div class="grid-menu">
-  <a href="pages/catalogue.html">
-    <img src="assets/icons/catalogue.svg" alt="">
-    <span>Product Catalogue</span>
-  </a>
-  <a href="pages/marketing.html">
-    <img src="assets/icons/scheme.svg" alt="">
-    <span>Marketing Scheme</span>
-  </a>
-  <a href="pages/calendar.html">
-    <img src="assets/icons/calendar.svg" alt="" class="calendar-icon">
-    <span>Calendar</span>
-  </a>
-  <a href="pages/tips.html">
-    <img src="assets/icons/tips.svg" alt="">
-    <span>Health Education Tips</span>
+<div class="categories-wrapper">
+  <div class="categories" tabindex="0" aria-label="Product categories">
+    <a href="analgesics-antipyretics.html" class="category">
+      <i class="fas fa-pills"></i> Analgesics / Antipyretics
+    </a>
+    <a href="antibiotics-antibacterials.html" class="category">
+      <i class="fas fa-capsules"></i> Antibiotics / Antibacterials
+    </a>
+    <a href="antihistamines-antiallergics.html" class="category">
+      <i class="fas fa-allergies"></i> Antihistamines / Antiallergics
+    </a>
+    <a href="cold-flu-cough-allergy.html" class="category">
+      <i class="fas fa-syringe"></i> Cold, Flu, Cough, and Allergy Remedies
+    </a>
+    <a href="vitamins-nutritional-supplements.html" class="category">
+      <i class="fas fa-capsules"></i> Vitamins / Nutritional Supplements
+    </a>
+    <a href="cardiovascular-medicines.html" class="category">
+      <i class="fas fa-heartbeat"></i> Cardiovascular Medicines
+    </a>
+    <a href="gastrointestinal-medicines.html" class="category">
+      <i class="fas fa-stomach"></i> Gastrointestinal Medicines / Digestives
+    </a>
+    <a href="endocrine-anti-diabetics.html" class="category">
+      <i class="fas fa-vial"></i> Endocrine / Anti-diabetics
+    </a>
+    <a href="cns-sedatives-analgesics.html" class="category">
+      <i class="fas fa-brain"></i> CNS / Sedatives / Analgesics
+    </a>
+    <a href="others-specialties.html" class="category">
+      <i class="fas fa-briefcase-medical"></i> Others / Specialties
+    </a>
+    <a href="alpha-chymotrypsin.html" class="category">
+      <i class="fas fa-capsules"></i> Alpha-chymotrypsin (anti-inflammatory enzyme)
+    </a>
+    <a href="spironolactone.html" class="category">
+      <i class="fas fa-prescription-bottle-alt"></i> Spironolactone (diuretic)
+    </a>
+    <a href="nitrofurantoin.html" class="category">
+      <i class="fas fa-pills"></i> Nitrofurantoin (GI antibiotic)
+    </a>
+  </div>
+  <a href="all-categories.html" class="see-more" aria-label="See all categories">
+    See More &raquo;
   </a>
 </div>
+
 
   <section class="featured">
     <h2>Featured</h2>

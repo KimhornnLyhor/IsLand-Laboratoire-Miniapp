@@ -98,4 +98,10 @@ function autoScrollFeatured() {
 }
 
 setInterval(autoScrollFeatured, 30);
+document.querySelectorAll('button[data-link]').forEach(button => {
+  button.addEventListener('click', () => {
+    const url = button.getAttribute('data-link');
+    window.location.href = url;
+  });
+});
 
