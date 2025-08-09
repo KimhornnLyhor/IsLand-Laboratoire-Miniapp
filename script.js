@@ -1,5 +1,6 @@
 const featuredItems = document.getElementById("featured-items");
 const trendingItems = document.getElementById("trending-items");
+const searchInput = document.getElementById("searchInput");
 
 const sampleProducts = [
   {
@@ -14,30 +15,30 @@ const sampleProducts = [
   },
   {
     id: 3,
-    name: "Toxic Panda",
-    img: "assets/images/products/panda.png"
+    name: "RHINOMINE-300",
+    img: "assets/images/products/RHINOMINE-300.png"
   },
   {
     id: 4,
-    name: "Red Lizard",
-    img: "assets/images/products/lizard.png"
+    name: "THOXTRIM-960",
+    img: "assets/images/products/BOX-THOXTRIM-960.png"
   },
   {
     id: 5,
-    name: "Green Bot",
-    img: "assets/images/products/robot.png"
+    name: "ILAVIC-TAB",
+    img: "assets/images/products/ILAVIC-TAB.png"
   }
 ];
 
 function renderCards(container, items) {
   container.innerHTML = items.map(item => `
-    <div class="card">
+    <div class="card product-card">
       <a href="pages/detail.html?id=${item.id}">
-       <img src="${item.img}" alt="${item.name}" />
+        <img src="${item.img}" alt="${item.name}" />
       </a>
       <div class="card-body">
         <a href="pages/detail.html?id=${item.id}" class="card-name">
-          <p>${item.name}</p>
+          <p class="product-name">${item.name}</p>
         </a>
         <button onclick="location.href='pages/detail.html?id=${item.id}'">Read More</button>
       </div>
@@ -45,6 +46,26 @@ function renderCards(container, items) {
   `).join('');
 }
 
+// Initial render
+renderCards(featuredItems, sampleProducts);
+renderCards(trendingItems, [sampleProducts[1]]);
+
+// Search filter
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  const filteredProducts = sampleProducts.filter(product =>
+    product.name.toLowerCase().includes(query)
+  );
+  renderCards(featuredItems, filteredProducts);
+});
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  const filteredProducts = sampleProducts.filter(product =>
+    product.name.toLowerCase().includes(query)
+  );
+  renderCards(featuredItems, filteredProducts);
+  renderCards(trendingItems, filteredProducts);
+});
 
 // Render product cards into the containers
 renderCards(featuredItems, sampleProducts);
