@@ -6,29 +6,38 @@ const sampleProducts = [
   {
     id: 1,
     name: "THOXTRIM-480",
-    img: "assets/images/products/BOX-THOXTRIM-480.png"
+    img: "assets/images/products/BOX-THOXTRIM-480.png",
+    shortDescription: "Accurate temperature measurement"
+    // shortdescription: "THOXTRIM-480 is a broad-spectrum antibiotic used to treat various bacterial infections. It contains a combination of trimethoprim and sulfamethoxazole, which work together to inhibit bacterial growth. This medication is effective against respiratory, urinary, and gastrointestinal infections.",
+    // longdescription: "THOXTRIM-480 is a broad-spectrum antibiotic that combines trim
   },
   {
     id: 2,
     name: "ILAMINE-4",
-    img: "assets/images/products/ILAMINE-4.png"
+    img: "assets/images/products/ILAMINE-4.png",
+    shortDescription: "Accurate temperature measurement"
+
   },
   {
     id: 3,
     name: "RHINOMINE-300",
-    img: "assets/images/products/RHINOMINE-300.png"
-  },
-  {
-    id: 4,
-    name: "THOXTRIM-960",
-    img: "assets/images/products/BOX-THOXTRIM-960.png"
-  },
-  {
-    id: 5,
-    name: "ILAVIC-TAB",
-    img: "assets/images/products/ILAVIC-TAB.png"
+    img: "assets/images/products/RHINOMINE-300.png",
+    shortDescription: "Accurate temperature measurement"
   }
-];
+  ];
+//   {
+//     id: 4,
+//     name: "THOXTRIM-960",
+//     img: "assets/images/products/BOX-THOXTRIM-960.png",
+//     shortDescription: "Accurate temperature measurement"
+//   },
+//   {
+//     id: 5,
+//     name: "ILAVIC-TAB",
+//     img: "assets/images/products/ILAVIC-TAB.png",
+//     shortDescription: "Accurate temperature measurement"
+//   }
+// ];
 
 function renderCards(container, items) {
   container.innerHTML = items.map(item => `
@@ -38,7 +47,8 @@ function renderCards(container, items) {
       </a>
       <div class="card-body">
         <a href="pages/detail.html?id=${item.id}" class="card-name">
-          <p class="product-name">${item.name}</p>
+          <h3 class="product-name">${item.name}</h3>
+          <p class="product-description">${item.shortDescription}</p>
         </a>
         <button onclick="location.href='pages/detail.html?id=${item.id}'">Read More</button>
       </div>
@@ -104,4 +114,5 @@ document.querySelectorAll('button[data-link]').forEach(button => {
     window.location.href = url;
   });
 });
+
 

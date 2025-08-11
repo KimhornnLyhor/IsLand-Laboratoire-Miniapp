@@ -12,9 +12,11 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
   />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<!-- 
 <i class="bi bi-house-heart-fill"></i>
 <i class="bi bi-heart-fill"></i></head>
-<i class="bi bi-search"></i>
+<i class="bi bi-search"></i> -->
 <script>
   const container = document.getElementById("featured-items");
 
@@ -62,7 +64,7 @@
   </a>
   <a href="offers.html" class="tab">
     <i class="fas fa-bullhorn"></i>
-    <span>Offers</span>
+    <span>Shceme</span>
   </a>
   <a href="tips.html" class="tab">
     <i class="fas fa-lightbulb"></i>
@@ -71,14 +73,26 @@
 </nav>
 
 
-<input type="search" 
-       id="searchInput"
-       placeholder="Search products, categories..." 
-       class="search-bar" 
-       aria-label="Search" />
+<div class="search-container">
+  <span class="search-icon" onclick="searchProducts()" style="cursor:pointer;">
+    <i class="bi bi-search"></i>
+  </span>
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Search products, categories..."
+    class="search-bar"
+    aria-label="Search"
+  />
   <!-- <button class="search-button" onclick="searchProducts()">
     <i class="bi bi-search"></i> -->
+  </button>
 </div>
+
+</div>
+<div>  <a href="all-categories.html" class="see-more" aria-label="See all categories">
+    See More &raquo;
+  </a></div>
 <div class="categories-wrapper">
   <div class="categories" tabindex="0" aria-label="Product categories">
     <a href="analgesics-antipyretics.html" class="category">
@@ -121,18 +135,14 @@
       <i class="fas fa-pills"></i> Nitrofurantoin (GI antibiotic)
     </a>
   </div>
-  <a href="all-categories.html" class="see-more" aria-label="See all categories">
-    See More &raquo;
-  </a>
 </div>
+<section class="featured">
+  <h2 class="section-title">Featured</h2>
+  <div class="card-grid" id="featured-items">
+    <!-- Product cards will be injected here by your JS -->
+  </div>
+</section>
 
-
-  <section class="featured">
-    <h2>Featured</h2>
-    <div class="card-grid" id="featured-items">
-      <!-- Inject product cards via JS -->
-    </div>
-  </section>
 
   <div class="bottom-nav">
     <button onclick="location.href='home.html'" class="icon-button">
