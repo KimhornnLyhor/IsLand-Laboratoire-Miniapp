@@ -1,0 +1,93 @@
+  body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f8f9fa;
+        }
+        .tg-bottom-sheet {
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tab-active {
+            color: #4F46E5;
+            font-weight: 600;
+            border-bottom: 3px solid #4F46E5;
+        }
+        .tab-inactive {
+            color: #6B7280;
+        }
+        .filter-chip {
+            background: #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        .filter-chip:hover {
+            background: #e5e7eb;
+        }
+        .filter-chip.active {
+            background: #4F46E5;
+            color: white;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .pagination button {
+            width: 36px;
+            height: 36px;
+            margin: 0 4px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .pagination button:hover {
+            background: #f3f4f6;
+        }
+        .pagination button.active {
+            background: #4F46E5;
+            color: white;
+            border-color: #4F46E5;
+        }
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .category-pill {
+  display: inline-block;
+  font-size: 0.75rem; /* text-xs */
+  padding: 0.1rem 0.5rem;
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 500;
+  color: white;
+  user-select: none;
+}
+
+.category-medicine { background-color: #3b82f6; } /* blue-500 */
+.category-electronics { background-color: #34d399; } /* green-400 */
+.category-equipment { background-color: #a78bfa; } /* purple-400 */
+.category-supplies { background-color: #fbbf24; } /* yellow-400 */

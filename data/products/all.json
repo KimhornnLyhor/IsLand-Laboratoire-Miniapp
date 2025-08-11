@@ -1,0 +1,108 @@
+[
+  {
+    "id": 1,
+    "name": "Digital Thermometer",
+    "category": "medicine",
+    "description": "Precision medical device",
+    "image": "thermometer.png"
+  },
+  {
+    "id": 2,
+    "name": "Portable ECG Monitor",
+    "category": "electronics",
+    "description": "Advanced cardiac monitoring",
+    "image": "ecg.png"
+  },
+  {
+    "id": 3,
+    "name": "Medical Stethoscope",
+    "category": "equipment",
+    "description": "Professional diagnostic tool",
+    "image": "stethoscope.png"
+  },
+  {
+    "id": 4,
+    "name": "First Aid Kit",
+    "category": "supplies",
+    "description": "Complete emergency supplies",
+    "image": "first-aid.png"
+  },
+  {
+    "id": 5,
+    "name": "Blood Pressure Monitor",
+    "category": "medicine",
+    "description": "Accurate readings at home",
+    "image": "blood-pressure.png"
+  },
+  {
+    "id": 6,
+    "name": "Pulse Oximeter",
+    "category": "electronics",
+    "description": "Measure oxygen saturation",
+    "image": "pulse-oximeter.png"
+  },
+  {
+    "id": 7,
+    "name": "Insulin Pen",
+    "category": "supplies",
+    "description": "Convenient insulin delivery",
+    "image": "insulin-pen.png"
+  },
+  {
+    "id": 8,
+    "name": "Nebulizer",
+    "category": "equipment",
+    "description": "Respiratory therapy device",
+    "image": "nebulizer.png"
+  },
+  {
+    "id": 9,
+    "name": "Glucose Meter",
+    "category": "medicine",
+    "description": "Monitor blood sugar levels",
+    "image": "glucose-meter.png"
+  },
+  {
+    "id": 10,
+    "name": "Therapeutic Massage Gun",
+    "category": "electronics",
+    "description": "Muscle recovery tool",
+    "image": "massage-gun.png"
+  },
+  {
+    "id": 11,
+    "name": "Infrared Thermometer",
+    "category": "equipment",
+    "description": "Non-contact temperature measurement",
+    "image": "infrared-thermometer.png"
+  },
+  {
+    "id": 12,
+    "name": "Oxygen Concentrator",
+    "category": "supplies",
+    "description": "Portable oxygen supply",
+    "image": "oxygen-concentrator.png"
+  },
+  {
+    "id": 13,
+    "name": "Medical Alert Bracelet",
+    "category": "accessories",
+    "description": "Emergency medical information",
+    "image": "medical-alert.png"
+  },
+  {
+    "id": 14,
+    "name": "Digital Scale",
+    "category": "electronics",
+    "description": "Track weight accurately",
+    "image": "digital-scale.png"
+  },
+  {
+    "id": 15,
+    "name": "UV Sterilizer Box",
+    "category": "equipment",
+    "description": "Sanitize small items effectively",
+    "image": "uv-sterilizer.png"
+  } 
+
+]

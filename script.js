@@ -115,4 +115,127 @@ document.querySelectorAll('button[data-link]').forEach(button => {
   });
 });
 
+// catalogue.html
+const productGrid = document.getElementById('productGrid');
+const categoryButtons = document.querySelectorAll('#categoryFilters button');
+const pagination = document.getElementById('pagination');
 
+let products = [];
+let currentPage = 1;
+const itemsPerPage = 10;
+let currentFilter = "all";
+
+async function loadProducts() {
+  try {
+    const res = await fetch('products.json');
+    products = await res.json();
+    renderProducts();
+  } catch (error) {
+    console.error("Error loading products:", error);
+  }
+}
+
+function renderProducts(filter = currentFilter, page = currentPage) {
+  currentFilter = filter;
+  currentPage = page;
+
+  const filtered = products.filter(p => filter === "all" || p.category === filter);
+
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedItems = filtered.slice(start, end);
+
+  // Render products
+  productGrid.innerHTML = "";
+  paginatedItems.forEach(p => {
+    productGrid.innerHTML += `
+      <div class="product-card bg-white rounded-xl shadow-sm">
+        <div class="flex">
+          <div class="w-20 h-20 bg-gray-50 flex items-center justify-center">
+            <img src="${p.image}" alt="${p.name}" class="w-12 h-12">
+          </div>
+          <div class="flex-1 p-4">
+            <h4 class="font-semibold text-gray-900">${p.name}</h4>
+            <p class="text-sm text-gray-500 mt-1">${p.desc}</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full capitalize">${p.category}</span>
+              <button class="text-sm text-blue-500">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  renderPagination(filtered.length);
+}
+
+function renderPagination(totalItems) {
+  pagination.innerHTML = "";
+
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  if (totalPages <= 1) return;
+
+  if (currentPage > 1) {
+    pagination.appendChild(createPageButton("Prev", currentPage - 1));
+  }
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = createPageButton(i, i);
+    if (i === currentPage) {
+      btn.classList.add("bg-blue-500", "text-white");
+    } else {
+      btn.classList.add("bg-gray-200", "text-gray-700");
+    }
+    pagination.appendChild(btn);
+  }
+
+  if (currentPage < totalPages) {
+    pagination.appendChild(createPageButton("Next", currentPage + 1));
+  }
+}
+
+function createPageButton(text, page) {
+  const btn = document.createElement("button");
+  btn.textContent = text;
+  btn.className = "px-3 py-1 rounded hover:bg-gray-300 transition";
+  btn.addEventListener("click", () => renderProducts(currentFilter, page));
+  return btn;
+}
+
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    categoryButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.category, 1);
+  });
+});
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+  alert("Search feature coming soon!");
+});
+
+loadProducts();
+// Render product cards into the containers
+[
+  { "name": "Digital Thermometer", "category": "medicine", "desc": "Precision medical device", "image": "assets/images/products/thermometer.png" },
+  { "name": "Portable ECG Monitor", "category": "electronics", "desc": "Advanced cardiac monitoring", "image": "assets/images/products/ecg.png" },
+  { "name": "Medical Stethoscope", "category": "equipment", "desc": "Professional diagnostic tool", "image": "assets/images/products/stethoscope.png" },
+  { "name": "First Aid Kit", "category": "supplies", "desc": "Complete emergency supplies", "image": "assets/images/products/first-aid.png" },
+  { "name": "Blood Pressure Monitor", "category": "medicine", "desc": "Accurate readings at home", "image": "assets/images/products/blood-pressure.png" },
+  { "name": "Pulse Oximeter", "category": "electronics", "desc": "Measure oxygen saturation", "image": "assets/images/products/pulse-oximeter.png" },
+  { "name": "Surgical Mask Pack", "category": "supplies", "desc": "High protection face masks", "image": "assets/images/products/mask.png" },
+  { "name": "Infrared Forehead Thermometer", "category": "electronics", "desc": "Quick, contactless readings", "image": "assets/images/products/forehead-thermometer.png" },
+  { "name": "Wheelchair", "category": "equipment", "desc": "Durable and foldable", "image": "assets/images/products/wheelchair.png" },
+  { "name": "IV Stand", "category": "equipment", "desc": "Adjustable stainless steel stand", "image": "assets/images/products/iv-stand.png" },
+  { "name": "Glucose Monitor", "category": "medicine", "desc": "Track blood sugar levels", "image": "assets/images/products/glucose-monitor.png" },
+  { "name": "Defibrillator", "category": "electronics", "desc": "Life-saving emergency device", "image": "assets/images/products/defibrillator.png" },
+  { "name": "Sterile Gloves", "category": "supplies", "desc": "Latex-free medical gloves", "image": "assets/images/products/gloves.png" },
+  { "name": "Hearing Aid", "category": "electronics", "desc": "Compact and discreet", "image": "assets/images/products/hearing-aid.png" },
+  { "name": "Nebulizer", "category": "medicine", "desc": "Relief for respiratory issues", "image": "assets/images/products/nebulizer.png" },
+  { "name": "Hospital Bed", "category": "equipment", "desc": "Adjustable electric bed", "image": "assets/images/products/hospital-bed.png" },
+  { "name": "Crutches", "category": "equipment", "desc": "Lightweight and adjustable", "image": "assets/images/products/crutches.png" },
+  { "name": "Face Shield", "category": "supplies", "desc": "Full face protection", "image": "assets/images/products/face-shield.png" },
+  { "name": "Sphygmomanometer", "category": "medicine", "desc": "Manual BP measuring device", "image": "assets/images/products/sphygmomanometer.png" },
+  { "name": "Oxygen Cylinder", "category": "equipment", "desc": "Portable oxygen supply", "image": "assets/images/products/oxygen-cylinder.png" }
+]
