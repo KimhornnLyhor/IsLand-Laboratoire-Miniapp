@@ -91,3 +91,64 @@
 .category-electronics { background-color: #34d399; } /* green-400 */
 .category-equipment { background-color: #a78bfa; } /* purple-400 */
 .category-supplies { background-color: #fbbf24; } /* yellow-400 */
+
+/* Extra small devices (phones <480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .category-card,
+  .product-card {
+    padding: 0.75rem;
+  }
+
+  .pagination button {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .category-pill {
+    font-size: 0.65rem;
+    padding: 0.05rem 0.4rem;
+  }
+
+  .tg-bottom-sheet {
+    border-radius: 12px 12px 0 0;
+    padding: 0.75rem;
+  }
+}
+
+/* Small tablets & landscape phones (<768px) */
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .category-card,
+  .product-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablets & small laptops (<1024px) */
+@media (max-width: 1024px) {
+  .category-card,
+  .product-card {
+    max-width: 48%; /* 2 per row in grid layouts */
+  }
+}
+
+/* Large desktop (>1440px) */
+@media (min-width: 1440px) {
+  body {
+    font-size: 18px;
+  }
+
+  .category-card,
+  .product-card {
+    padding: 1.25rem;
+  }
+}

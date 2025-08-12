@@ -68,11 +68,10 @@ body {
 .search-container {
   position: relative;
   width: 90%;
-  max-width: 400px;
+  max-width: 400px;  /* Default max width for portrait / smaller screens */
   margin: 0 auto;
 
   display: flex;
-  align-items: center;
 }
 
 .search-icon {
@@ -86,20 +85,46 @@ body {
 }
 
 .search-bar {
-  flex: 1;               /* Take up all available space */
-  padding: 10px 12px 10px 36px; /* padding-left for icon */
+  flex: 1;
+  padding: 10px 12px 10px 36px; /* padding-left to make space for icon */
   font-size: 1rem;
   border: 2px solid #35e3e9;
   border-radius: 32px;
   outline: none;
   transition: border-color 0.3s ease;
-  /* Remove width and margin here */
 }
 
 .search-bar:focus {
   border-color: #ac4dff;
   box-shadow: 0 0 8px rgba(172, 77, 255, 0.5);
 }
+
+/* Landscape orientation */
+@media (orientation: landscape) {
+  .search-container {
+    max-width: 600px;  /* Increase max width on landscape */
+  }
+  .search-bar {
+    font-size: 1.1rem;
+    padding-left: 40px; /* Slightly bigger padding for icon */
+  }
+}
+
+/* For very wide screens */
+@media (min-width: 900px) {
+  .search-container {
+    max-width: 700px; /* even bigger max-width on wide screens */
+  }
+}
+
+/* For very small/mobile devices */
+@media (max-width: 350px) {
+  .search-bar {
+    font-size: 0.9rem;
+    padding-left: 30px;
+  }
+}
+
 
 .search-button {
   background: linear-gradient(90deg, #4dd8ff, #14ebdd);
@@ -111,8 +136,8 @@ body {
   font-size: 1.1rem;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
 
   transition: background 0.3s ease;
   margin-left: 8px; /* Add some spacing between input and button */
@@ -385,121 +410,6 @@ text-align: right;
 }
 
 
-
-/* Bottom Navigation */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--secondary);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
-  z-index: 999;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-.bottom-nav button {
-  background: none;
-  border: none;
-  color: rgb(0, 0, 0);
-  font-size: 22px;
-}
-/* .bottom-nav .plus {
-  font-size: 28px;
-  color: var(--highlight);
-} */
-
-
-
-
-
-/* Mobile-first: Responsive for screens under 600px */
-@media screen and (max-width: 599px) {
-  body {
-    font-size: 15px;
-    padding-bottom: 60px;
-  }
-  .header {
-    padding: 0.5rem;
-  }
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-  .profile-header {
-    padding: 12px;
-    text-align: center;
-  }
-  .profile-avatar {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 6px;
-  }
-  .account-box {
-    padding: 10px;
-    max-width: 98vw;
-    font-size: 1rem;
-  }
-  .account-actions button {
-    padding: 7px 10px;
-    font-size: 0.95em;
-  }
-.grid-menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 16px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.grid-menu a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none; /* Remove underline */
-  background:  #40dee9b1;
-
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.grid-menu a:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.grid-menu img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 12px;
-}
-
-.grid-menu span {
-  font-size: 14px;
-  font-weight: 600;
-  color: #333333;
-  text-align: center;
-}
-
-  .bottom-nav {
-    padding: 6px 0;
-  }
-  .bottom-nav button {
-    font-size: 14px;
-    padding: 10px;
-    min-width: 44px;
-    min-height: 44px;
-  }
-  .bottom-nav .plus {
-    font-size: 24px;
-  }
-  
-}
 .featured {
   padding: 1.5rem 1rem;
   /* background: #fff; */
@@ -579,7 +489,120 @@ text-align: right;
 }
 
 
-/* Responsive Typography & Layout */
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--secondary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  z-index: 999;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 22px;
+}
+/* .bottom-nav .plus {
+  font-size: 28px;
+  color: var(--highlight);
+} */
+
+
+
+
+
+/* Keep everything as is, just fix media queries and add a few tweaks */
+
+/* Your full CSS above remains unchanged except: */
+
+/* Fix nested media query: close your mobile first media query before next starts */
+@media screen and (max-width: 599px) {
+  body {
+    font-size: 15px;
+    padding-bottom: 60px;
+  }
+  .header {
+    padding: 0.5rem;
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  .profile-header {
+    padding: 12px;
+    text-align: center;
+  }
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 6px;
+  }
+  .account-box {
+    padding: 10px;
+    max-width: 98vw;
+    font-size: 1rem;
+  }
+  .account-actions button {
+    padding: 7px 10px;
+    font-size: 0.95em;
+  }
+  .grid-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .grid-menu a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    background: #40dee9b1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .grid-menu a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  .grid-menu img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 12px;
+  }
+  .grid-menu span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+  }
+  .bottom-nav {
+    padding: 6px 0;
+  }
+  .bottom-nav button {
+    font-size: 14px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .bottom-nav .plus {
+    font-size: 24px;
+  }
+} /* close mobile first query */
+
+/* Now start the tablet+ media query cleanly */
+
 @media screen and (min-width: 600px) {
   .profile-header {
     display: flex;
@@ -606,8 +629,33 @@ text-align: right;
     grid-template-columns: repeat(4, 1fr);
   }
 }
-.menu-label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+/* Add this optional fix to prevent horizontal overflow from scroll areas */
+.categories,
+.nav-tabs,
+.card-grid {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #000000 transparent;
+}
+
+.categories::-webkit-scrollbar,
+.nav-tabs::-webkit-scrollbar,
+.card-grid::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.categories::-webkit-scrollbar-thumb,
+.nav-tabs::-webkit-scrollbar-thumb,
+.card-grid::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 3px;
+}
+
+/* Prevent tabs and categories from shrinking too small */
+.tab,
+.category {
+  flex-shrink: 0;
+  min-width: 70px;
 }

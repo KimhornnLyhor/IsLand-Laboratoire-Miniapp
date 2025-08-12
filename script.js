@@ -217,25 +217,3 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 
 loadProducts();
 // Render product cards into the containers
-[
-  { "name": "Digital Thermometer", "category": "medicine", "desc": "Precision medical device", "image": "assets/images/products/thermometer.png" },
-  { "name": "Portable ECG Monitor", "category": "electronics", "desc": "Advanced cardiac monitoring", "image": "assets/images/products/ecg.png" },
-  { "name": "Medical Stethoscope", "category": "equipment", "desc": "Professional diagnostic tool", "image": "assets/images/products/stethoscope.png" },
-  { "name": "First Aid Kit", "category": "supplies", "desc": "Complete emergency supplies", "image": "assets/images/products/first-aid.png" },
-  { "name": "Blood Pressure Monitor", "category": "medicine", "desc": "Accurate readings at home", "image": "assets/images/products/blood-pressure.png" },
-  { "name": "Pulse Oximeter", "category": "electronics", "desc": "Measure oxygen saturation", "image": "assets/images/products/pulse-oximeter.png" },
-  { "name": "Surgical Mask Pack", "category": "supplies", "desc": "High protection face masks", "image": "assets/images/products/mask.png" },
-  { "name": "Infrared Forehead Thermometer", "category": "electronics", "desc": "Quick, contactless readings", "image": "assets/images/products/forehead-thermometer.png" },
-  { "name": "Wheelchair", "category": "equipment", "desc": "Durable and foldable", "image": "assets/images/products/wheelchair.png" },
-  { "name": "IV Stand", "category": "equipment", "desc": "Adjustable stainless steel stand", "image": "assets/images/products/iv-stand.png" },
-  { "name": "Glucose Monitor", "category": "medicine", "desc": "Track blood sugar levels", "image": "assets/images/products/glucose-monitor.png" },
-  { "name": "Defibrillator", "category": "electronics", "desc": "Life-saving emergency device", "image": "assets/images/products/defibrillator.png" },
-  { "name": "Sterile Gloves", "category": "supplies", "desc": "Latex-free medical gloves", "image": "assets/images/products/gloves.png" },
-  { "name": "Hearing Aid", "category": "electronics", "desc": "Compact and discreet", "image": "assets/images/products/hearing-aid.png" },
-  { "name": "Nebulizer", "category": "medicine", "desc": "Relief for respiratory issues", "image": "assets/images/products/nebulizer.png" },
-  { "name": "Hospital Bed", "category": "equipment", "desc": "Adjustable electric bed", "image": "assets/images/products/hospital-bed.png" },
-  { "name": "Crutches", "category": "equipment", "desc": "Lightweight and adjustable", "image": "assets/images/products/crutches.png" },
-  { "name": "Face Shield", "category": "supplies", "desc": "Full face protection", "image": "assets/images/products/face-shield.png" },
-  { "name": "Sphygmomanometer", "category": "medicine", "desc": "Manual BP measuring device", "image": "assets/images/products/sphygmomanometer.png" },
-  { "name": "Oxygen Cylinder", "category": "equipment", "desc": "Portable oxygen supply", "image": "assets/images/products/oxygen-cylinder.png" }
-]
