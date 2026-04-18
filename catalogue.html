@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalogue – Island Laboratoire</title>
+<style>
+/* ═══════════════════════════════════════════════
+   ISLAND LABORATOIRE — SHARED STYLESHEET
+   ═══════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --teal:       #00B5AD;
+  --teal-dark:  #008F88;
+  --teal-light: #2DD4CC;
+  --teal-pale:  #E0FAF9;
+  --teal-pale2: #C2F2F0;
+  --white:      #FFFFFF;
+  --off-white:  #F6FEFE;
+  --gray-light: #F0F9F9;
+  --ink:        #0A2E2C;
+  --ink-mid:    #1B4E4B;
+  --ink-soft:   #3D7470;
+  --border:     rgba(0,181,173,0.20);
+  --shadow:     0 4px 32px rgba(0,181,173,0.13);
+  --shadow-lg:  0 12px 56px rgba(0,181,173,0.20);
+  --nav-h:      72px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; height: var(--nav-h);
+  background: rgba(255,255,255,0.93);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 24px rgba(0,181,173,0.07);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo .lt-brand { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: .08em; color: var(--teal); }
+.nav-logo .lt-sub { font-family: 'Space Mono', monospace; font-size: 8.5px; letter-spacing: .22em; color: var(--ink-soft); text-transform: uppercase; margin-top: 2px; display: block; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--ink-soft); transition: color .2s; padding: 4px 0; border-bottom: 2px solid transparent; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); border-bottom-color: var(--teal); }
+.nav-cta { background: var(--teal) !important; color: #fff !important; padding: 10px 22px; border-radius: 6px; font-weight: 600 !important; box-shadow: 0 4px 14px rgba(0,181,173,.35); transition: background .2s, transform .15s !important; border-bottom: none !important; border-radius: 6px !important; }
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 4px 0; border-radius: 2px; transition: all .3s; }
+.mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border); padding: 20px 6vw 28px; z-index: 199; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; font-size: 16px; font-weight: 500; color: var(--ink-soft); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--teal); }
+
+/* ── PAGE HERO (inner pages) ── */
+.page-hero {
+  padding: calc(var(--nav-h) + 60px) 8vw 70px;
+  background: linear-gradient(135deg, #E8FAFA 0%, #fff 50%, #F0FEFD 100%);
+  position: relative; overflow: hidden;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,181,173,.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 60% 60% at 90% 50%, black, transparent);
+}
+.page-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+.page-tag { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.page-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--teal); border-radius: 2px; }
+.page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); line-height: .93; letter-spacing: .02em; color: var(--ink); }
+.page-hero h1 .teal { color: var(--teal); }
+.page-hero p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); margin-top: 18px; max-width: 560px; }
+
+/* ── SECTION SHARED ── */
+.section-tag { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.section-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--teal); border-radius: 2px; }
+h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 4.5vw, 58px); letter-spacing: .03em; line-height: 1; color: var(--ink); }
+h2 .teal { color: var(--teal); }
+
+/* ── BUTTONS ── */
+.btn-primary { background: var(--teal); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 30px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 24px rgba(0,181,173,.35); transition: background .2s, box-shadow .2s, transform .15s; }
+.btn-primary:hover { background: var(--teal-dark); box-shadow: 0 10px 36px rgba(0,181,173,.5); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--teal); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 12px 26px; border: 1.5px solid var(--teal); border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+.btn-outline:hover { background: var(--teal); color: #fff; }
+
+/* ── MARQUEE ── */
+.marquee-wrap { background: var(--teal); padding: 13px 0; overflow: hidden; }
+.marquee-track { display: flex; animation: marquee 32s linear infinite; white-space: nowrap; }
+.marquee-track span { display: inline-flex; align-items: center; gap: 20px; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.9); padding: 0 20px; }
+.marquee-track span::before { content: '✦'; font-size: 8px; opacity: .6; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 60px 8vw 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.footer-brand-col .fb-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .1em; color: var(--teal); }
+.footer-brand-col p { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+.footer-col h4 { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,.25); }
+.footer-disclaimer { font-size: 11px; color: rgba(255,255,255,.2); max-width: 420px; line-height: 1.6; text-align: right; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes spin   { from { transform:rotate(0); } to { transform:rotate(360deg); } }
+@keyframes pulse  { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+@keyframes drawSnake { to { stroke-dashoffset: 0; } }
+@keyframes popIn { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+
+/* LOGO SVG Animations */
+.logo-i-top  { animation: fadeUp .8s .2s ease both; }
+.logo-i-mid  { transform-origin: 50% 50%; animation: scaleIn .8s .4s ease both; }
+.logo-i-bot  { animation: fadeUp .8s .2s ease both; }
+.logo-ellipse{ stroke-dasharray:200; stroke-dashoffset:200; animation: drawEllipse 1.2s .6s ease forwards; }
+.logo-snake  { stroke-dasharray:300; stroke-dashoffset:300; animation: drawSnake 1.5s .9s ease forwards; }
+.logo-dot    { opacity:0; animation: popIn .3s 2.3s ease forwards; }
+@keyframes scaleIn    { from{opacity:0;transform:scaleY(0)} to{opacity:1;transform:scaleY(1)} }
+@keyframes drawEllipse{ to{stroke-dashoffset:0} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; }
+  .footer-disclaimer { text-align: left; }
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+#catalogue-main { padding:60px 8vw 100px; background:var(--gray-light); }
+.cat-controls { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:28px; }
+.search-wrap { position:relative; }
+.search-wrap svg { position:absolute; left:14px; top:50%; transform:translateY(-50%); width:16px; height:16px; stroke:var(--ink-soft); pointer-events:none; }
+#searchInput { background:#fff; border:1.5px solid var(--border); border-radius:8px; color:var(--ink); font-family:'DM Sans',sans-serif; font-size:14px; padding:11px 16px 11px 42px; width:300px; outline:none; transition:border-color .2s,box-shadow .2s; box-shadow:0 2px 10px rgba(0,181,173,.06); }
+#searchInput:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,181,173,.12); }
+#searchInput::placeholder { color:rgba(0,46,44,.3); }
+.result-count { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-soft); }
+.cat-tabs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; }
+.cat-tab { background:#fff; border:1.5px solid var(--border); border-radius:99px; color:var(--ink-soft); font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:500; padding:7px 18px; cursor:pointer; transition:all .2s; }
+.cat-tab:hover { border-color:var(--teal); color:var(--teal); background:var(--teal-pale); }
+.cat-tab.active { background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600; box-shadow:0 4px 14px rgba(0,181,173,.3); }
+
+/* PRODUCT GRID */
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+.product-card { background:#fff; border:1.5px solid var(--border); border-radius:16px; overflow:hidden; cursor:default; transition:all .25s; box-shadow:0 2px 12px rgba(0,181,173,.05); position:relative; }
+.product-card:hover { border-color:var(--teal-pale2); transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--teal); transform:scaleX(0); transform-origin:left; transition:transform .3s; z-index:1; }
+.product-card:hover::before { transform:scaleX(1); }
+.card-3d { width:100%; height:150px; background:linear-gradient(135deg,var(--teal-pale) 0%,#fff 100%); position:relative; display:block; }
+.card-3d canvas { width:100%!important; height:100%!important; display:block; cursor:grab; }
+.card-3d canvas:active { cursor:grabbing; }
+.drag-hint { position:absolute; bottom:6px; right:8px; font-size:10px; color:var(--teal-dark); opacity:.5; pointer-events:none; font-family:'Space Mono',monospace; }
+.card-body { padding:16px 18px 18px; }
+.product-num { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--teal); margin-bottom:6px; }
+.product-name { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:.06em; color:var(--ink); margin-bottom:5px; line-height:1.1; }
+.product-inn { font-size:12px; color:var(--ink-soft); line-height:1.5; margin-bottom:12px; }
+.product-cat-badge { display:inline-block; background:var(--teal-pale); border:1px solid var(--teal-pale2); border-radius:5px; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--teal-dark); padding:3px 9px; }
+.ai-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px; background:transparent; border:1px solid var(--teal); color:var(--teal); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; padding:5px 12px; border-radius:99px; cursor:pointer; transition:all .2s; }
+.ai-btn:hover { background:var(--teal); color:#fff; }
+.ai-btn svg { width:12px; height:12px; }
+.ai-response { margin-top:10px; font-size:12.5px; color:var(--ink-soft); line-height:1.6; background:var(--teal-pale); border-radius:8px; padding:10px 12px; display:none; border:1px solid var(--teal-pale2); }
+.ai-response.visible { display:block; }
+.ai-loading { display:inline-block; width:14px; height:14px; border:2px solid var(--teal-pale2); border-top-color:var(--teal); border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle; margin-right:6px; }
+.no-results { text-align:center; padding:80px 0; color:var(--ink-soft); font-size:15px; grid-column:1/-1; }
+
+@media(max-width:700px) { #searchInput{width:100%} .cat-controls{flex-direction:column;align-items:flex-start} }
+</style>
+</head>
+<body data-page="catalogue">
+<div id="nav-mount"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-tag">Product Catalogue</div>
+    <h1>OUR <span class="teal">MEDICINES</span></h1>
+    <p>107 pharmaceutical products across 12 therapeutic categories. Each 3D model is draggable — explore by category or search by INN. Click AI Overview for an instant clinical summary.</p>
+  </div>
+</div>
+
+<section id="catalogue-main">
+  <div class="cat-controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search by product name or INN…" oninput="filterProducts()">
+    </div>
+    <div class="result-count" id="resultCount">Showing 107 products</div>
+  </div>
+  <div class="cat-tabs" id="catTabs"></div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<div id="footer-mount"></div>
+
+<script>
+// ═══════════════════════════════════════
+// ISLAND LABORATOIRE — SHARED JS
+// ═══════════════════════════════════════
+
+// ── NAV HTML injected into every page ──
+const NAV_HTML = `
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
+      <rect x="40" y="8" width="20" height="84" rx="3" fill="#00B5AD"/>
+      <rect x="28" y="8" width="44" height="12" rx="3" fill="#00B5AD"/>
+      <rect x="28" y="80" width="44" height="12" rx="3" fill="#00B5AD"/>
+      <ellipse cx="50" cy="54" rx="28" ry="14" stroke="#00B5AD" stroke-width="4" fill="none"/>
+      <path d="M50 18 C63 30 65 44 56 56 C50 64 44 68 44 80" stroke="#2DD4CC" stroke-width="5" fill="none" stroke-linecap="round"
+            style="stroke-dasharray:120;stroke-dashoffset:120;animation:drawSnake 1.5s 1s ease forwards"/>
+      <circle cx="57" cy="19" r="5" fill="#2DD4CC" style="opacity:0;animation:popIn .3s 2.4s ease forwards"/>
+    </svg>
+    <div>
+      <span class="lt-brand">IsLAnD</span>
+      <span class="lt-sub">Laboratoire</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html"     data-page="index">Home</a></li>
+    <li><a href="about.html"     data-page="about">About Us</a></li>
+    <li><a href="catalogue.html" data-page="catalogue">Products</a></li>
+    <li><a href="news.html"      data-page="news">News</a></li>
+    <li><a href="careers.html"   data-page="careers">Careers</a></li>
+    <li><a href="contact.html"   data-page="contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index (3).html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="catalogue.html">Products</a>
+  <a href="news.html">News</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>`;
+
+// ── FOOTER HTML ──
+const FOOTER_HTML = `
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Antibiotics</span><span>Cardiovascular</span><span>Antidiabetics</span><span>CNS / Neurological</span><span>Analgesics</span><span>Gastrointestinal</span><span>Respiratory</span><span>Antihistamines</span><span>Corticosteroids</span><span>Lipid-Lowering</span><span>Topical Dermatology</span><span>Vitamins &amp; Supplements</span>
+    <span>Antibiotics</span><span>Cardiovascular</span><span>Antidiabetics</span><span>CNS / Neurological</span><span>Analgesics</span><span>Gastrointestinal</span><span>Respiratory</span><span>Antihistamines</span><span>Corticosteroids</span><span>Lipid-Lowering</span><span>Topical Dermatology</span><span>Vitamins &amp; Supplements</span>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <div class="fb-name">IsLAnD Laboratoire</div>
+      <p>Your trusted pharmaceutical manufacturing partner — delivering quality medicines across 12 therapeutic categories.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="catalogue.html">Products</a>
+      <a href="news.html">News</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Therapeutic Areas</h4>
+      <a href="catalogue.html">Antibiotics</a>
+      <a href="catalogue.html">Cardiovascular</a>
+      <a href="catalogue.html">Antidiabetics</a>
+      <a href="catalogue.html">CNS / Neurological</a>
+      <a href="catalogue.html">Gastrointestinal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Professional</h4>
+      <a href="catalogue.html">Product Catalogue</a>
+      <a href="contact.html">Enquiries</a>
+      <a href="contact.html">Distribution</a>
+      <a href="contact.html">Regulatory Docs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Island Laboratoire. All rights reserved.</p>
+    <p class="footer-disclaimer">For professional use only — pharmacies, hospitals and licensed medical practitioners. Not for direct consumer use.</p>
+  </div>
+</footer>`;
+
+// ── INJECT & INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Inject nav
+  const navMount = document.getElementById('nav-mount');
+  if (navMount) navMount.innerHTML = NAV_HTML;
+
+  // Inject footer
+  const footerMount = document.getElementById('footer-mount');
+  if (footerMount) footerMount.innerHTML = FOOTER_HTML;
+
+  // Mark active nav link
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-page]').forEach(a => {
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+});
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+</script>
+<script>
+const products = [
+  {id:1,name:"AURIO-250",inn:"Tetracycline HCl 250 mg",cat:"Antibiotics",shape:"capsule",color1:"#F4A261",color2:"#E76F51"},
+  {id:2,name:"Cephavon-500",inn:"Cefalexin Monohydrate 500 mg",cat:"Antibiotics",shape:"capsule",color1:"#E9C46A",color2:"#F4A261"},
+  {id:3,name:"ERYTHROMYCINE-500",inn:"Erythromycin Ethylsuccinate 500 mg",cat:"Antibiotics",shape:"tablet",color1:"#FF6B6B",color2:"#EE5A24"},
+  {id:4,name:"ILAFLOX-500",inn:"Ciprofloxacin 500 mg",cat:"Antibiotics",shape:"tablet",color1:"#00B5AD",color2:"#008F88"},
+  {id:5,name:"ILAMOX-250 HK",inn:"Amoxicillin 250 mg",cat:"Antibiotics",shape:"capsule",color1:"#A29BFE",color2:"#6C5CE7"},
+  {id:6,name:"ILAMOX-250 Sachet",inn:"Amoxicillin 125 mg",cat:"Antibiotics",shape:"capsule",color1:"#FD79A8",color2:"#E84393"},
+  {id:7,name:"Ilamox-250 Sweet Yellow",inn:"Amoxicillin 250 mg",cat:"Antibiotics",shape:"capsule",color1:"#FDCB6E",color2:"#E17055"},
+  {id:8,name:"ILAMOX-500 HK",inn:"Amoxicillin 500 mg",cat:"Antibiotics",shape:"capsule",color1:"#55EFC4",color2:"#00B894"},
+  {id:9,name:"ILAMOX-500S",inn:"Amoxicillin 500 mg",cat:"Antibiotics",shape:"capsule",color1:"#74B9FF",color2:"#0984E3"},
+  {id:10,name:"Ipicine-500",inn:"Ampicillin 500 mg",cat:"Antibiotics",shape:"tablet",color1:"#81ECEC",color2:"#00CEC9"},
+  {id:11,name:"LARYTRO-250",inn:"Erythromycin 250 mg",cat:"Antibiotics",shape:"capsule",color1:"#FAB1A0",color2:"#E17055"},
+  {id:12,name:"LINCOMYCINE",inn:"Lincomycin 500 mg",cat:"Antibiotics",shape:"tablet",color1:"#B2BEC3",color2:"#636E72"},
+  {id:13,name:"METROLA-250",inn:"Metronidazole 250 mg",cat:"Antibiotics",shape:"tablet",color1:"#00B5AD",color2:"#008F88"},
+  {id:14,name:"TETRACAP-500",inn:"Tetracycline HCl 500 mg",cat:"Antibiotics",shape:"capsule",color1:"#F9CA24",color2:"#F0932B"},
+  {id:15,name:"Thoxtrim-480",inn:"Sulfamethoxazole 400 mg + Trimethoprim 80 mg",cat:"Antibiotics",shape:"tablet",color1:"#6AB04C",color2:"#218C74"},
+  {id:16,name:"Thoxtrim-960",inn:"Sulfamethoxazole 800 mg + Trimethoprim 160 mg",cat:"Antibiotics",shape:"tablet",color1:"#4A90D9",color2:"#2475B0"},
+  {id:17,name:"COLADOL-15",inn:"Paracetamol 500 mg + Codeine 15 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#FFF3CD",color2:"#F9CA24"},
+  {id:18,name:"COLADOL-30",inn:"Paracetamol 500 mg + Codeine 30 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#FFEAA7",color2:"#FDCB6E"},
+  {id:19,name:"Icolgen",inn:"Paracetamol 500 mg + Phenylephrine + Chlorpheniramine",cat:"Analgesics / NSAIDs",shape:"capsule",color1:"#FD79A8",color2:"#E84393"},
+  {id:20,name:"Iladol SV",inn:"Paracetamol 500 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#DCDDE1",color2:"#B2BEC3"},
+  {id:21,name:"ILADOL-12",inn:"Paracetamol 500 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#F8F9FA",color2:"#DFE6E9"},
+  {id:22,name:"Iladol-325 Rose",inn:"Paracetamol 325 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#FFB8B8",color2:"#FF7675"},
+  {id:23,name:"ILADOL-500",inn:"Paracetamol 500 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#FFFFFF",color2:"#DFE6E9"},
+  {id:24,name:"ILADOL-AL",inn:"Paracetamol 500 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#E8F4FD",color2:"#AED6F1"},
+  {id:25,name:"ILANAMICA-250",inn:"Mefenamic Acid 250 mg",cat:"Analgesics / NSAIDs",shape:"capsule",color1:"#FFDD59",color2:"#F9CA24"},
+  {id:26,name:"ILAVIC-CAP",inn:"Paracetamol 325 mg + Ibuprofen 200 mg + Caffeine 25 mg",cat:"Analgesics / NSAIDs",shape:"capsule",color1:"#A8E6CF",color2:"#3D9970"},
+  {id:27,name:"ILAVIC-TAB",inn:"Paracetamol 325 mg + Ibuprofen 200 mg + Caffeine 25 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#DCEDC8",color2:"#8BC34A"},
+  {id:28,name:"MICRAPAIN",inn:"Paracetamol 400 mg + Caffeine 62.5 mg + Codeine 20 mg",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#CFD8DC",color2:"#90A4AE"},
+  {id:29,name:"Piroximax-20",inn:"Piroxicam 20 mg",cat:"Analgesics / NSAIDs",shape:"capsule",color1:"#FF8A65",color2:"#FF5722"},
+  {id:30,name:"Rhinomine-300",inn:"Paracetamol 300 mg + Vitamin C + Chlorpheniramine",cat:"Analgesics / NSAIDs",shape:"tablet",color1:"#FFAB40",color2:"#FF6F00"},
+  {id:31,name:"Brosolvon",inn:"Bromhexine HCl 8 mg",cat:"Respiratory & Cough",shape:"tablet",color1:"#80CBC4",color2:"#00897B"},
+  {id:32,name:"Carbo Cough",inn:"Carbocisteine 375 mg",cat:"Respiratory & Cough",shape:"capsule",color1:"#CE93D8",color2:"#8E24AA"},
+  {id:33,name:"Neo-Codeine",inn:"Codeine 15 mg + Sulfogaiacol + Grindelia",cat:"Respiratory & Cough",shape:"tablet",color1:"#A5D6A7",color2:"#388E3C"},
+  {id:34,name:"CETIRINEX",inn:"Cetirizine 10 mg",cat:"Antihistamines",shape:"tablet",color1:"#90CAF9",color2:"#1565C0"},
+  {id:35,name:"ILAMINE-4 Blister",inn:"Chlorpheniramine Maleate 4 mg",cat:"Antihistamines",shape:"tablet",color1:"#F48FB1",color2:"#AD1457"},
+  {id:36,name:"ILAMINE-4 Bottle",inn:"Chlorpheniramine Maleate 4 mg",cat:"Antihistamines",shape:"tablet",color1:"#EF9A9A",color2:"#C62828"},
+  {id:37,name:"Ilergyl",inn:"Antihistamine",cat:"Antihistamines",shape:"capsule",color1:"#BCAAA4",color2:"#6D4C41"},
+  {id:38,name:"GRISITCHY",inn:"Griseofulvin 500 mg",cat:"Antifungals",shape:"tablet",color1:"#FFF176",color2:"#F9A825"},
+  {id:39,name:"AMLODURA-10",inn:"Amlodipine 10 mg",cat:"Cardiovascular",shape:"tablet",color1:"#EF9A9A",color2:"#B71C1C"},
+  {id:40,name:"AMLODURA-5",inn:"Amlodipine 5 mg",cat:"Cardiovascular",shape:"tablet",color1:"#FFCDD2",color2:"#E53935"},
+  {id:41,name:"CARDIO-25",inn:"Losartan Potassium 25 mg",cat:"Cardiovascular",shape:"tablet",color1:"#FF8A80",color2:"#D32F2F"},
+  {id:42,name:"CARDIO-50",inn:"Losartan Potassium 50 mg",cat:"Cardiovascular",shape:"tablet",color1:"#FF5252",color2:"#C62828"},
+  {id:43,name:"CARVAPRESS-12.5",inn:"Carvedilol 12.5 mg",cat:"Cardiovascular",shape:"tablet",color1:"#FF80AB",color2:"#880E4F"},
+  {id:44,name:"CARVAPRESS-25",inn:"Carvedilol 25 mg",cat:"Cardiovascular",shape:"tablet",color1:"#F06292",color2:"#880E4F"},
+  {id:45,name:"FUREXAN",inn:"Furosemide 40 mg",cat:"Cardiovascular",shape:"tablet",color1:"#80D8FF",color2:"#0277BD"},
+  {id:46,name:"NIFELON-10",inn:"Nifedipine 10 mg",cat:"Cardiovascular",shape:"capsule",color1:"#FFD54F",color2:"#F57F17"},
+  {id:47,name:"NIFELON-20",inn:"Nifedipine 20 mg",cat:"Cardiovascular",shape:"capsule",color1:"#FFCA28",color2:"#E65100"},
+  {id:48,name:"NIFELON-20 EX",inn:"Nifedipine 20 mg (Extended Release)",cat:"Cardiovascular",shape:"capsule",color1:"#FFB300",color2:"#BF360C"},
+  {id:49,name:"TELMAC 40",inn:"Telmisartan 40 mg",cat:"Cardiovascular",shape:"tablet",color1:"#B39DDB",color2:"#4527A0"},
+  {id:50,name:"TELMAC 80",inn:"Telmisartan 80 mg",cat:"Cardiovascular",shape:"tablet",color1:"#7E57C2",color2:"#311B92"},
+  {id:51,name:"TELMAC-AM 40/10",inn:"Telmisartan 40 mg + Amlodipine 10 mg",cat:"Cardiovascular",shape:"tablet",color1:"#CE93D8",color2:"#6A1B9A"},
+  {id:52,name:"TELMAC-AM 40/5",inn:"Telmisartan 40 mg + Amlodipine 5 mg",cat:"Cardiovascular",shape:"tablet",color1:"#BA68C8",color2:"#4A148C"},
+  {id:53,name:"TELMAC-AM 80/5",inn:"Telmisartan 80 mg + Amlodipine 5 mg",cat:"Cardiovascular",shape:"tablet",color1:"#AB47BC",color2:"#4A148C"},
+  {id:54,name:"EMPASS-10",inn:"Empagliflozin 10 mg",cat:"Antidiabetics",shape:"tablet",color1:"#A5D6A7",color2:"#1B5E20"},
+  {id:55,name:"EMPASS-25",inn:"Empagliflozin 25 mg",cat:"Antidiabetics",shape:"tablet",color1:"#66BB6A",color2:"#2E7D32"},
+  {id:56,name:"GLIPRIME-30 MR",inn:"Gliclazide 30 mg (Modified Release)",cat:"Antidiabetics",shape:"tablet",color1:"#A8EDEA",color2:"#00796B"},
+  {id:57,name:"GLIPRIME-60 MR",inn:"Gliclazide 60 mg (Modified Release)",cat:"Antidiabetics",shape:"tablet",color1:"#4DB6AC",color2:"#00695C"},
+  {id:58,name:"GLUCOEMPA-12.5/500",inn:"Empagliflozin 12.5 mg + Metformin 500 mg",cat:"Antidiabetics",shape:"capsule",color1:"#80CBC4",color2:"#004D40"},
+  {id:59,name:"GLUCOEMPA-5/500",inn:"Empagliflozin 5 mg + Metformin 500 mg",cat:"Antidiabetics",shape:"capsule",color1:"#B2DFDB",color2:"#00695C"},
+  {id:60,name:"SITTIN-100",inn:"Sitagliptin 100 mg",cat:"Antidiabetics",shape:"tablet",color1:"#FFD180",color2:"#FF6D00"},
+  {id:61,name:"SITTIN-50",inn:"Sitagliptin 50 mg",cat:"Antidiabetics",shape:"tablet",color1:"#FFAB40",color2:"#E65100"},
+  {id:62,name:"SITTINMET-50/1000",inn:"Sitagliptin 50 mg + Metformin 1000 mg",cat:"Antidiabetics",shape:"capsule",color1:"#FFCC02",color2:"#FF6F00"},
+  {id:63,name:"SITTINMET-50/500",inn:"Sitagliptin 50 mg + Metformin 500 mg",cat:"Antidiabetics",shape:"capsule",color1:"#FFE082",color2:"#FF8F00"},
+  {id:64,name:"ALPRAZEN-0.5",inn:"Alprazolam 0.5 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#80DEEA",color2:"#00838F"},
+  {id:65,name:"ALPRAZEN-1",inn:"Alprazolam 1 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#26C6DA",color2:"#006064"},
+  {id:66,name:"DIZZONIL",inn:"Acetyl-dl-Leucine 500 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#E1F5FE",color2:"#0277BD"},
+  {id:67,name:"MELAPAM-10",inn:"Diazepam 10 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#90A4AE",color2:"#37474F"},
+  {id:68,name:"MELAPAM-5",inn:"Diazepam 5 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#B0BEC5",color2:"#455A64"},
+  {id:69,name:"MELAPAM-Dragees",inn:"Diazepam 5 mg (Dragee)",cat:"CNS / Neurological",shape:"sphere",color1:"#78909C",color2:"#263238"},
+  {id:70,name:"PHENOMENAL-100",inn:"Phenobarbital 100 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#BCAAA4",color2:"#4E342E"},
+  {id:71,name:"PHENOMENAL-50",inn:"Phenobarbital 50 mg",cat:"CNS / Neurological",shape:"tablet",color1:"#D7CCC8",color2:"#6D4C41"},
+  {id:72,name:"DEX-White",inn:"Dexamethasone Acetate 0.5 mg",cat:"Corticosteroids",shape:"tablet",color1:"#FAFAFA",color2:"#E0E0E0"},
+  {id:73,name:"DEXA-Red",inn:"Dexamethasone Acetate 0.5 mg",cat:"Corticosteroids",shape:"tablet",color1:"#EF9A9A",color2:"#D32F2F"},
+  {id:74,name:"DEXA-Violet",inn:"Dexamethasone Acetate 0.5 mg",cat:"Corticosteroids",shape:"tablet",color1:"#CE93D8",color2:"#6A1B9A"},
+  {id:75,name:"DEXA-WHITE",inn:"Dexamethasone Acetate 0.5 mg",cat:"Corticosteroids",shape:"tablet",color1:"#F5F5F5",color2:"#BDBDBD"},
+  {id:76,name:"DEXA-Yellow",inn:"Dexamethasone Acetate 0.5 mg",cat:"Corticosteroids",shape:"tablet",color1:"#FFF176",color2:"#F9A825"},
+  {id:77,name:"Beclogen Cream",inn:"Betamethasone + Clotrimazole + Gentamicin (Topical)",cat:"Topical / Dermatology",shape:"sphere",color1:"#F8BBD0",color2:"#AD1457"},
+  {id:78,name:"Betamethasone Cream",inn:"Betamethasone Dipropionate + Clotrimazole (Topical)",cat:"Topical / Dermatology",shape:"sphere",color1:"#FFE0B2",color2:"#E65100"},
+  {id:79,name:"Betamycine",inn:"Betamethasone + Neomycin Sulfate (Topical)",cat:"Topical / Dermatology",shape:"sphere",color1:"#F0F4C3",color2:"#827717"},
+  {id:80,name:"Eco-Tri Cream",inn:"Econazole + Triamcinolone (Topical)",cat:"Topical / Dermatology",shape:"sphere",color1:"#E8F5E9",color2:"#1B5E20"},
+  {id:81,name:"Hydrocortisine-Cream",inn:"Hydrocortisone Butyrate 100 mg (Topical)",cat:"Topical / Dermatology",shape:"sphere",color1:"#FFF3E0",color2:"#E65100"},
+  {id:82,name:"ATONIX-10",inn:"Atorvastatin 10 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#B3E5FC",color2:"#01579B"},
+  {id:83,name:"ATONIX-20",inn:"Atorvastatin 20 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#81D4FA",color2:"#0277BD"},
+  {id:84,name:"ATONIX-40",inn:"Atorvastatin 40 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#4FC3F7",color2:"#01579B"},
+  {id:85,name:"SIMONIX-10",inn:"Simvastatin 10 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#C5E1A5",color2:"#33691E"},
+  {id:86,name:"SIMONIX-20",inn:"Simvastatin 20 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#AED581",color2:"#33691E"},
+  {id:87,name:"SIMONIX-40",inn:"Simvastatin 40 mg",cat:"Lipid-Lowering",shape:"tablet",color1:"#9CCC65",color2:"#1B5E20"},
+  {id:88,name:"AIRONIC-160",inn:"Simethicone 160 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#B2EBF2",color2:"#006064"},
+  {id:89,name:"AIRONIC-80 Green",inn:"Simethicone 80 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#A5D6A7",color2:"#2E7D32"},
+  {id:90,name:"AIRONIX-80 Orange",inn:"Simethicone 80 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#FFCC80",color2:"#E65100"},
+  {id:91,name:"ALPHACHYM",inn:"Alpha-Chymotrypsin 21 Microkatal",cat:"Gastrointestinal",shape:"tablet",color1:"#F5CBA7",color2:"#AF6F09"},
+  {id:92,name:"ALUMAX-PINK",inn:"Aluminium Hydroxide Gel 300 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#F8BBD0",color2:"#C2185B"},
+  {id:93,name:"BISFON",inn:"Phloroglucinol 62.2 mg + Trimethylphloroglucinol 80 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#DCEDC8",color2:"#558B2F"},
+  {id:94,name:"BLOCKGAS-PINK",inn:"Al. Hydroxide + Mg. Hydroxide + Simethicone",cat:"Gastrointestinal",shape:"tablet",color1:"#FCE4EC",color2:"#880E4F"},
+  {id:95,name:"CIMEGUARD-400 Green",inn:"Cimetidine 400 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#C8E6C9",color2:"#1B5E20"},
+  {id:96,name:"CIMEGUARD-400 White",inn:"Cimetidine 400 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#FFFFFF",color2:"#90A4AE"},
+  {id:97,name:"DEXZOROL-30",inn:"Dexlansoprazole 30 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#B39DDB",color2:"#4527A0"},
+  {id:98,name:"DEXZOROL-60",inn:"Dexlansoprazole 60 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#7E57C2",color2:"#311B92"},
+  {id:99,name:"GASOPAN-10",inn:"Hyoscine Butylbromide 10 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#B2DFDB",color2:"#004D40"},
+  {id:100,name:"GASPRAZOL-20",inn:"Omeprazole 20 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#FFAB91",color2:"#BF360C"},
+  {id:101,name:"ILARYL",inn:"Loperamide HCl 2 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#80CBC4",color2:"#004D40"},
+  {id:102,name:"LANZOROL-15",inn:"Lansoprazole 15 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#FFE0B2",color2:"#BF360C"},
+  {id:103,name:"LANZOROL-30",inn:"Lansoprazole 30 mg",cat:"Gastrointestinal",shape:"capsule",color1:"#FFCC80",color2:"#E65100"},
+  {id:104,name:"MOTIRAN",inn:"Metoclopramide HCl 10 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#C5CAE9",color2:"#283593"},
+  {id:105,name:"SINOFON",inn:"Phloroglucinol 80 mg",cat:"Gastrointestinal",shape:"tablet",color1:"#E8EAF6",color2:"#1A237E"},
+  {id:106,name:"ILA C-500",inn:"Vitamin C (Ascorbic Acid) 500 mg",cat:"Vitamins & Supplements",shape:"tablet",color1:"#FFF9C4",color2:"#F57F17"},
+  {id:107,name:"GLUTA-ILA",inn:"Glutamic Acid 300 mg + Vitamin B6 5 mg",cat:"Vitamins & Supplements",shape:"capsule",color1:"#DCEDC8",color2:"#33691E"},
+];
+
+function hexToThreeColor(hex) { return new THREE.Color(hex); }
+
+function createScene(canvas, shape, color1, color2) {
+  const w = canvas.clientWidth || 280, h = 150;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
+  renderer.setSize(w, h);
+  renderer.setClearColor(0x000000, 0);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+  camera.position.set(0, 0, 3.5);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const dir = new THREE.DirectionalLight(0xffffff, 1.0); dir.position.set(3, 4, 5); scene.add(dir);
+  const fill = new THREE.DirectionalLight(hexToThreeColor(color1), 0.4); fill.position.set(-3, -2, 2); scene.add(fill);
+  const mat1 = new THREE.MeshPhongMaterial({ color: hexToThreeColor(color1), shininess: 80 });
+  const mat2 = new THREE.MeshPhongMaterial({ color: hexToThreeColor(color2), shininess: 80 });
+  let mesh;
+  if (shape === 'capsule') {
+    const g = new THREE.Group();
+    g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 1.0, 32), mat1));
+    const t = new THREE.Mesh(new THREE.SphereGeometry(0.35, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), mat2); t.position.y = 0.5; g.add(t);
+    const b = new THREE.Mesh(new THREE.SphereGeometry(0.35, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), mat1); b.position.y = -0.5; g.add(b);
+    g.rotation.z = Math.PI / 2; scene.add(g); mesh = g;
+  } else if (shape === 'tablet') {
+    mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 0.28, 48), mat1);
+    const line = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.02, 8, 48), new THREE.MeshPhongMaterial({ color: hexToThreeColor(color2) })); line.rotation.x = Math.PI / 2; mesh.add(line);
+    scene.add(mesh);
+  } else {
+    mesh = new THREE.Mesh(new THREE.SphereGeometry(0.75, 48, 48), mat1); scene.add(mesh);
+  }
+  let isDragging = false, prevX = 0, prevY = 0, velX = 0, velY = 0, autoRotate = true;
+  canvas.addEventListener('mousedown', e => { isDragging = true; autoRotate = false; prevX = e.clientX; prevY = e.clientY; velX = velY = 0; });
+  canvas.addEventListener('touchstart', e => { isDragging = true; autoRotate = false; prevX = e.touches[0].clientX; prevY = e.touches[0].clientY; velX = velY = 0; }, { passive: true });
+  function onMove(cx, cy) { if (!isDragging) return; const dx = cx-prevX, dy = cy-prevY; velX=dx*.018; velY=dy*.018; mesh.rotation.y+=dx*.018; mesh.rotation.x+=dy*.018; prevX=cx; prevY=cy; }
+  window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
+  window.addEventListener('touchmove', e => { if (isDragging) { onMove(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
+  window.addEventListener('mouseup', () => { isDragging = false; });
+  window.addEventListener('touchend', () => { isDragging = false; });
+  function animate() {
+    requestAnimationFrame(animate);
+    if (autoRotate) { mesh.rotation.y += 0.008; mesh.rotation.x += 0.003; }
+    else if (!isDragging) { mesh.rotation.y += velX; mesh.rotation.x += velY; velX *= 0.95; velY *= 0.95; if (Math.abs(velX) < 0.0003 && Math.abs(velY) < 0.0003) autoRotate = true; }
+    renderer.render(scene, camera);
+  }
+  animate();
+  const ro = new ResizeObserver(() => { const nw = canvas.parentElement.clientWidth; renderer.setSize(nw, h); camera.aspect = nw/h; camera.updateProjectionMatrix(); });
+  ro.observe(canvas.parentElement);
+}
+
+async function fetchAiInfo(btn, pData) {
+  const p = JSON.parse(decodeURIComponent(pData));
+  const responseEl = btn.nextElementSibling;
+  if (responseEl.classList.contains('visible')) { responseEl.classList.remove('visible'); btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> AI Overview`; return; }
+  btn.innerHTML = `<span class="ai-loading"></span> Loading…`; btn.disabled = true;
+  responseEl.innerHTML = ''; responseEl.classList.add('visible');
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:1000, messages:[{ role:'user', content:`You are a pharmaceutical reference assistant. For the medicine "${p.name}" containing "${p.inn}" in the category "${p.cat}", provide a concise professional overview in 3 short bullet points covering: (1) primary therapeutic use, (2) mechanism of action in one sentence, (3) one key clinical note. Keep each bullet under 20 words. Format as plain text bullets starting with •` }] }) });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'No information available.';
+    responseEl.innerHTML = text.split('\n').filter(l=>l.trim()).map(l=>`<div style="margin-bottom:5px">${l.trim()}</div>`).join('');
+  } catch(e) { responseEl.innerHTML = '<em>Could not load AI overview.</em>'; }
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> Hide`;
+  btn.disabled = false;
+}
+
+const categories = ['All', ...new Set(products.map(p => p.cat))];
+let activeCategory = 'All';
+
+function buildTabs() {
+  const c = document.getElementById('catTabs');
+  categories.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'cat-tab' + (cat === 'All' ? ' active' : '');
+    b.textContent = cat;
+    b.onclick = () => { activeCategory = cat; document.querySelectorAll('.cat-tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); filterProducts(); };
+    c.appendChild(b);
+  });
+}
+
+function filterProducts() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  const filtered = products.filter(p => (activeCategory==='All'||p.cat===activeCategory) && (!q||p.name.toLowerCase().includes(q)||p.inn.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+  document.getElementById('resultCount').textContent = `Showing ${filtered.length} product${filtered.length!==1?'s':''}`;
+  if (!filtered.length) { grid.innerHTML='<div class="no-results">No products match your search.</div>'; return; }
+  filtered.forEach(p => {
+    const pDataEncoded = encodeURIComponent(JSON.stringify({name:p.name,inn:p.inn,cat:p.cat}));
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="card-3d"><canvas id="c-${p.id}"></canvas><div class="drag-hint">drag to rotate</div></div>
+      <div class="card-body">
+        <div class="product-num">#${String(p.id).padStart(3,'0')}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-inn">${p.inn}</div>
+        <div class="product-cat-badge">${p.cat}</div>
+        <button class="ai-btn" onclick="fetchAiInfo(this,'${pDataEncoded}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg> AI Overview
+        </button>
+        <div class="ai-response"></div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  requestAnimationFrame(() => { filtered.forEach(p => { const c = document.getElementById(`c-${p.id}`); if(c) createScene(c, p.shape, p.color1, p.color2); }); });
+}
+
+buildTabs();
+filterProducts();
+</script>
+</body>
+</html>

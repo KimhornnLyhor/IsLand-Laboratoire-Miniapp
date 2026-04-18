@@ -1,116 +1,1346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <title>Island Laboratorie</title>
-  <link rel="icon" type="image/png" href="assets/images/ISLAND-LOGO.svg" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Island Laboratoire – We Create Access to Healing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --teal:       #00B5AD;
+  --teal-dark:  #007A74;
+  --teal-mid:   #009990;
+  --teal-pale:  #E8F7F6;
+  --teal-pale2: #C8EEEC;
+  --white:      #FFFFFF;
+  --pearl:      #F8FAF9;
+  --stone:      #F2F4F3;
+  --ink:        #0E1E1C;
+  --ink-mid:    #2C4340;
+  --ink-soft:   #5A7270;
+  --ink-faint:  #8FA8A6;
+  --border:     rgba(0,181,173,0.12);
+  --border-ink: rgba(14,30,28,0.10);
+  --serif:      'Cormorant Garamond', Georgia, serif;
+  --sans:       'DM Sans', system-ui, sans-serif;
+  --mono:       'Space Mono', monospace;
+}
 
-  <style>
-    body {
-      margin: 0;
-      background: url('assets/images/First-BG.jpg') center center / cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-family: 'Kanit', sans-serif;
-      flex-direction: column;
-      padding: 10px;
-      box-sizing: border-box;
-      color: white;
-    }
+/* ═══════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
 
-    .splash-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 1;
-      transition: opacity 2s ease; /* slower fade-out */
-      max-width: 90vw;
-    }
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 72px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-ink);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 40px rgba(14,30,28,0.07); }
 
-    .splash-container.fade-out {
-      opacity: 0;
-    }
+.nav-logo { display: flex; align-items: center; gap: 13px; }
+.nav-logo-mark {
+  width: 38px; height: 38px;
+  background: var(--teal-pale);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-mark svg { width: 24px; height: 24px; }
+.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+.nav-logo-sub {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-top: 3px;
+}
 
-    img {
-      width: 40vw;
-      max-width: 200px;
-      height: auto;
-      animation: fadeInUp 1s ease;
-            justify-content: center;
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--teal);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
-      /* filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3)); */
-    }
+.nav-cta {
+  background: var(--teal);
+  color: var(--white) !important;
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.15s !important;
+}
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
 
-    .company-text {
-      text-align: center;
-      color: rgb(0, 186, 199);
-      animation: fadeInUp 1.5s ease;
-      margin-top: 5px;
-      text-shadow: 0 0 5px rgb(255, 255, 255);
-            justify-content: center;
-      
-    }
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--ink); border-radius: 2px;
+  transition: all 0.3s;
+}
 
-    .kh {
-      font-family: 'Khmer Chhay Round 1', serif;
-      font-size: clamp(20px, 5vw, 32px);
-      margin: 0;
-    }
+/* mobile menu */
+.mobile-nav {
+  display: none;
+  position: fixed; top: 72px; left: 0; right: 0;
+  background: rgba(255,255,255,0.98);
+  border-bottom: 1px solid var(--border-ink);
+  padding: 20px 5vw 28px;
+  z-index: 99;
+}
+.mobile-nav.open { display: block; }
+.mobile-nav a {
+  display: block; padding: 13px 0;
+  font-size: 16px; font-weight: 500;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--border-ink);
+  transition: color 0.2s;
+}
+.mobile-nav a:hover { color: var(--teal); }
+.mobile-nav a:last-child { border-bottom: none; }
 
-    .en {
-      font-size: clamp(16px, 4vw, 24px);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin: 0;
-    }
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  padding-top: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 6vw 80px 8vw;
+  position: relative;
+  z-index: 2;
+}
 
-    @media (max-width: 400px) {
-      img {
-        width: 60vw;
-      }
-      .kh {
-        font-size: 18px;
-      }
-      .en {
-        font-size: 14px;
-      }
-    }
-  </style>
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s 0.1s ease forwards;
+}
+.hero-eyebrow-line { width: 32px; height: 1px; background: var(--teal); }
+.hero-eyebrow span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(48px, 5.5vw, 84px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+}
+.hero-headline em {
+  font-style: italic;
+  color: var(--teal);
+}
+.hero-headline strong {
+  font-weight: 600;
+}
+
+.hero-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: 420px;
+  margin-top: 28px;
+  font-weight: 300;
+  opacity: 0; animation: fadeUp 0.8s 0.35s ease forwards;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 20px;
+  margin-top: 44px;
+  opacity: 0; animation: fadeUp 0.8s 0.45s ease forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 14px 28px;
+  border-radius: 3px;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-primary svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+.btn-text {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+.btn-text:hover { color: var(--teal); gap: 12px; }
+.btn-text::after { content: '→'; }
+
+.hero-stats {
+  display: flex; gap: 40px;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-ink);
+  opacity: 0; animation: fadeUp 0.8s 0.55s ease forwards;
+}
+.hs-item {}
+.hs-num {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--teal);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hs-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 5px;
+}
+
+/* Hero Right — large visual panel */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: var(--teal-pale);
+}
+
+.hero-bg-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(0,181,173,0.15) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(0,181,173,0.08) 0%, transparent 50%);
+}
+
+.hero-grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,181,173,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,181,173,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero-visual-content {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 40px;
+}
+
+.hero-logo-animation {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Orbiting rings */
+.orbit-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,181,173,0.20);
+}
+.orbit-ring:nth-child(1) {
+  width: 440px; height: 440px;
+  animation: orbit 28s linear infinite;
+}
+.orbit-ring:nth-child(2) {
+  width: 320px; height: 320px;
+  animation: orbit 18s linear infinite reverse;
+  border-style: dashed;
+  border-color: rgba(0,181,173,0.12);
+}
+.orbit-ring:nth-child(3) {
+  width: 200px; height: 200px;
+  animation: orbit 10s linear infinite;
+  border-color: rgba(0,181,173,0.25);
+}
+.orbit-ring::after {
+  content: '';
+  position: absolute; top: -5px; left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
+  background: var(--teal); border-radius: 50%;
+  box-shadow: 0 0 16px rgba(0,181,173,0.6);
+}
+
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.hero-logo-core {
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 80px rgba(0,181,173,0.15), 0 20px 60px rgba(0,181,173,0.1);
+  backdrop-filter: blur(10px);
+  position: relative; z-index: 2;
+}
+
+.hero-logo-core svg {
+  width: 100px; height: 120px;
+  filter: drop-shadow(0 4px 16px rgba(0,181,173,0.3));
+}
+
+/* I-bar and snake animations */
+.li-top  { animation: slideDown 0.7s 0.3s ease both; }
+.li-mid  { transform-origin: 50% 50%; animation: scaleIn 0.7s 0.5s ease both; }
+.li-bot  { animation: slideUp 0.7s 0.3s ease both; }
+.li-ellipse { stroke-dasharray: 200; stroke-dashoffset: 200; animation: drawPath 1.2s 0.7s ease forwards; }
+.li-snake   { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawPath 1.5s 1s ease forwards; }
+.li-dot     { opacity: 0; animation: popIn 0.3s 2.4s ease forwards; }
+
+@keyframes slideDown  { from { opacity:0; transform:translateY(-14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp    { from { opacity:0; transform:translateY(14px); }  to { opacity:1; transform:translateY(0); } }
+@keyframes scaleIn    { from { opacity:0; transform:scaleY(0); }          to { opacity:1; transform:scaleY(1); } }
+@keyframes drawPath   { to   { stroke-dashoffset: 0; } }
+@keyframes popIn      { from { opacity:0; transform:scale(0); }           to { opacity:1; transform:scale(1); } }
+@keyframes fadeUp     { from { opacity:0; transform:translateY(20px); }   to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn     { from { opacity:0; }                                to { opacity:1; } }
+
+/* Floating data cards on hero */
+.hero-card {
+  position: absolute;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--border-ink);
+  border-radius: 12px;
+  padding: 14px 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(14,30,28,0.08);
+  animation: cardFloat ease infinite alternate;
+}
+.hero-card:nth-child(5) { top: 18%; right: 8%; animation-duration: 5s; animation-delay: 0s; }
+.hero-card:nth-child(6) { bottom: 22%; left: 6%; animation-duration: 6s; animation-delay: 1s; }
+.hero-card:nth-child(7) { top: 55%; right: 5%; animation-duration: 4.5s; animation-delay: 0.5s; }
+
+@keyframes cardFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-10px); }
+}
+
+.hc-label {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 4px;
+}
+.hc-value {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 500;
+  color: var(--ink); line-height: 1;
+}
+.hc-value.teal { color: var(--teal); }
+.hc-sub { font-size: 11px; color: var(--ink-soft); margin-top: 3px; }
+
+/* ═══════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════ */
+.marquee-strip {
+  background: var(--ink);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 40s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track span {
+  display: inline-flex; align-items: center; gap: 24px;
+  font-family: var(--mono);
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding: 0 24px;
+}
+.marquee-track span.teal { color: var(--teal); }
+.marquee-track span::before {
+  content: '✦'; font-size: 7px; opacity: 0.4;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════════════════════════════
+   MISSION STATEMENT
+═══════════════════════════════════════ */
+#mission {
+  padding: 130px 8vw;
+  background: var(--white);
+  position: relative;
+}
+
+.mission-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
+}
+
+.mission-label {
+  position: sticky; top: 100px;
+}
+.ml-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ml-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); }
+.ml-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--ink);
+}
+.ml-title em { font-style: italic; color: var(--teal); }
+
+.mission-body {}
+.mission-statement {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 38px);
+  font-weight: 300; line-height: 1.35;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border-ink);
+}
+.mission-statement em { font-style: italic; color: var(--teal); }
+.mission-statement strong { font-weight: 600; }
+
+.mission-text {
+  font-size: 16px; line-height: 1.8; color: var(--ink-soft);
+  font-weight: 300;
+}
+.mission-text p + p { margin-top: 18px; }
+
+.mission-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 52px;
+}
+.pillar {
+  padding: 28px;
+  border: 1px solid var(--border-ink);
+  border-radius: 4px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.pillar:hover {
+  border-color: var(--teal);
+  background: var(--teal-pale);
+}
+.pillar-icon { font-size: 28px; margin-bottom: 14px; }
+.pillar h3 {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 500;
+  color: var(--ink); margin-bottom: 8px;
+}
+.pillar p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; }
+
+/* ═══════════════════════════════════════
+   PRODUCTS SECTION
+═══════════════════════════════════════ */
+#products {
+  padding: 130px 0;
+  background: var(--pearl);
+  overflow: hidden;
+}
+
+.products-header {
+  padding: 0 8vw;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 56px;
+}
+.ph-left {}
+.ph-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ph-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); }
+.ph-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300; line-height: 1.05;
+  color: var(--ink);
+}
+.ph-title em { font-style: italic; color: var(--teal); }
+.ph-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--ink-soft); letter-spacing: 0.04em;
+  text-decoration: none; transition: color 0.2s, gap 0.2s;
+}
+.ph-link:hover { color: var(--teal); gap: 12px; }
+.ph-link::after { content: '→'; }
+
+/* Horizontal scroll categories */
+.cat-scroll {
+  display: flex; gap: 12px;
+  overflow-x: auto; padding: 0 8vw 4px;
+  scrollbar-width: none; margin-bottom: 40px;
+}
+.cat-scroll::-webkit-scrollbar { display: none; }
+.cat-chip {
+  flex-shrink: 0;
+  background: var(--white);
+  border: 1px solid var(--border-ink);
+  border-radius: 2px;
+  padding: 8px 18px;
+  font-size: 12.5px; font-weight: 500;
+  color: var(--ink-soft); cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.cat-chip.active {
+  background: var(--teal); border-color: var(--teal);
+  color: var(--white);
+}
+.cat-chip:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+
+/* Horizontal product card scroll */
+.products-scroll {
+  display: flex; gap: 2px;
+  overflow-x: auto; padding: 0 8vw 32px;
+  scrollbar-width: thin; scrollbar-color: var(--teal-pale2) transparent;
+}
+.products-scroll::-webkit-scrollbar { height: 4px; }
+.products-scroll::-webkit-scrollbar-thumb { background: var(--teal-pale2); border-radius: 2px; }
+
+.prod-card {
+  flex-shrink: 0; width: 260px;
+  background: var(--white);
+  border: 1px solid var(--border-ink);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+}
+.prod-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(14,30,28,0.10);
+  border-color: rgba(0,181,173,0.3);
+}
+
+.prod-visual {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  font-size: 48px;
+}
+
+.prod-body { padding: 20px 18px 22px; }
+.prod-num {
+  font-family: var(--mono);
+  font-size: 9.5px; letter-spacing: 0.1em; color: var(--teal);
+  margin-bottom: 6px;
+}
+.prod-name {
+  font-family: var(--serif);
+  font-size: 19px; font-weight: 500;
+  color: var(--ink); line-height: 1.15;
+  margin-bottom: 6px;
+}
+.prod-inn {
+  font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  margin-bottom: 12px;
+}
+.prod-cat {
+  display: inline-block;
+  border: 1px solid var(--border-ink);
+  border-radius: 2px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-faint); padding: 3px 8px;
+}
+
+/* ═══════════════════════════════════════
+   STATEMENT BAND
+═══════════════════════════════════════ */
+.statement-band {
+  padding: 100px 8vw;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.statement-band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(0,181,173,0.08), transparent);
+  pointer-events: none;
+}
+.sb-inner {
+  max-width: 900px;
+  position: relative; z-index: 1;
+}
+.sb-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sb-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); }
+.sb-quote {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 300; line-height: 1.2;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.sb-quote em { font-style: italic; color: var(--teal); }
+.sb-source {
+  font-size: 13px; color: rgba(255,255,255,0.35);
+  margin-top: 28px; letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════
+   THERAPEUTIC AREAS
+═══════════════════════════════════════ */
+#areas {
+  padding: 130px 8vw;
+  background: var(--white);
+}
+.areas-header {
+  max-width: 600px; margin-bottom: 72px;
+}
+.areas-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.areas-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); }
+.areas-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 3.5vw, 52px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--ink);
+}
+.areas-title em { font-style: italic; color: var(--teal); }
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-ink);
+  border: 1px solid var(--border-ink);
+}
+.area-tile {
+  background: var(--white);
+  padding: 36px 28px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none; color: inherit;
+}
+.area-tile:hover { background: var(--teal-pale); }
+.at-icon { font-size: 32px; margin-bottom: 16px; }
+.at-name {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 500;
+  color: var(--ink); margin-bottom: 5px; line-height: 1.2;
+}
+.at-count {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.1em;
+  color: var(--teal);
+}
+.at-arrow {
+  font-size: 18px; color: var(--ink-faint);
+  margin-top: 14px; transition: transform 0.2s, color 0.2s;
+  display: inline-block;
+}
+.area-tile:hover .at-arrow { transform: translateX(4px); color: var(--teal); }
+
+/* ═══════════════════════════════════════
+   NEWS SECTION
+═══════════════════════════════════════ */
+#news {
+  padding: 130px 8vw;
+  background: var(--stone);
+}
+.news-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 56px;
+}
+.nh-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.nh-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); }
+.nh-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 3.5vw, 52px);
+  font-weight: 300; color: var(--ink); line-height: 1.05;
+}
+.nh-title em { font-style: italic; color: var(--teal); }
+
+.news-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2px;
+  background: var(--border-ink);
+  border: 1px solid var(--border-ink);
+}
+
+.news-card {
+  background: var(--white);
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none; color: inherit;
+}
+.news-card:hover { background: var(--pearl); }
+
+.nc-img {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+}
+.news-card:first-child .nc-img { height: 280px; font-size: 72px; }
+.news-card:not(:first-child) .nc-img { height: 160px; }
+
+.nc-body { padding: 24px; }
+.nc-cat {
+  font-family: var(--mono);
+  font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+}
+.nc-title {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 500;
+  color: var(--ink); line-height: 1.3;
+  margin-bottom: 10px;
+}
+.news-card:first-child .nc-title { font-size: 24px; }
+.nc-excerpt {
+  font-size: 13px; color: var(--ink-soft); line-height: 1.65;
+}
+.nc-date {
+  font-family: var(--mono);
+  font-size: 10px; color: var(--ink-faint);
+  margin-top: 14px;
+}
+
+/* ═══════════════════════════════════════
+   CTA BAND
+═══════════════════════════════════════ */
+#cta {
+  padding: 110px 8vw;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+#cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 60%);
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.cta-tag::before, .cta-tag::after {
+  content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.4);
+}
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 68px);
+  font-weight: 300; color: var(--white); line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+.cta-title em { font-style: italic; }
+.cta-body {
+  font-size: 17px; color: rgba(255,255,255,0.7);
+  max-width: 500px; margin: 0 auto 40px;
+  line-height: 1.7; font-weight: 300;
+}
+.cta-actions {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.btn-white {
+  background: var(--white); color: var(--teal-dark);
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  padding: 14px 30px; border: none; border-radius: 3px;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s; letter-spacing: 0.04em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+.btn-white:hover { background: var(--teal-pale); transform: translateY(-2px); }
+.btn-ghost-white {
+  background: transparent; color: var(--white);
+  font-family: var(--sans); font-size: 14px; font-weight: 500;
+  padding: 13px 28px; border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 3px; cursor: pointer; text-decoration: none;
+  transition: all 0.2s; letter-spacing: 0.04em;
+}
+.btn-ghost-white:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 80px 8vw 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 36px;
+}
+.footer-brand .fb-logo {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+}
+.fb-mark {
+  width: 36px; height: 36px;
+  background: rgba(0,181,173,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fb-mark svg { width: 22px; height: 22px; }
+.fb-name {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+.footer-brand p {
+  font-size: 13px; color: rgba(255,255,255,0.35);
+  line-height: 1.75; max-width: 260px;
+  font-weight: 300;
+}
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 9.5px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 18px;
+}
+.footer-col a {
+  display: block; font-size: 13.5px;
+  color: rgba(255,255,255,0.4); margin-bottom: 11px;
+  text-decoration: none; font-weight: 300;
+  transition: color 0.2s; letter-spacing: 0.01em;
+}
+.footer-col a:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px;
+}
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-disclaimer {
+  font-size: 11.5px; color: rgba(255,255,255,0.18);
+  max-width: 420px; line-height: 1.6; text-align: right;
+}
+
+/* ═══════════════════════════════════════
+   REVEAL ANIMATION
+═══════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .areas-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid  { grid-template-columns: 1fr 1fr; }
+  .news-card:first-child { grid-column: 1/-1; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 860px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .mission-inner { grid-template-columns: 1fr; gap: 40px; }
+  .mission-label { position: static; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .products-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .news-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .mission-pillars { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .areas-grid { grid-template-columns: 1fr 1fr; }
+  .news-grid  { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; }
+  .footer-disclaimer { text-align: left; }
+}
+</style>
 </head>
 <body>
-  <div class="splash-container" id="splash">
-    <img src="assets/images/ISLAND-LOGO.png" alt="Company Logo" />
-    <div class="company-text">
-      <p class="kh">សហគ្រាសផលិតឱសថ អាយលែន</p>
-      <p class="en">ISLAND LABORATORIE CO., LTD.</p>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 100 100" fill="none">
+        <rect x="40" y="8" width="20" height="84" rx="3" fill="#00B5AD"/>
+        <rect x="28" y="8" width="44" height="12" rx="3" fill="#00B5AD"/>
+        <rect x="28" y="80" width="44" height="12" rx="3" fill="#00B5AD"/>
+        <ellipse cx="50" cy="54" rx="28" ry="14" stroke="#00B5AD" stroke-width="4" fill="none"/>
+        <path d="M50 18 C63 30 65 44 56 56 C50 64 44 68 44 80" stroke="#2DD4CC" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="57" cy="19" r="5" fill="#2DD4CC"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Island Laboratoire</span>
+      <span class="nav-logo-sub">Pharmaceutical Co., Ltd.</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="about.html">Company</a></li>
+    <li><a href="catalogue.html">Products</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="about.html">Company</a>
+  <a href="catalogue.html">Products</a>
+  <a href="news.html">News</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>GMP Certified Manufacturer</span>
+    </div>
+    <h1 class="hero-headline">
+      We Create<br>
+      <em>Access</em><br>
+      to <strong>Healing</strong>
+    </h1>
+    <p class="hero-body">
+      Island Laboratoire manufactures over 90 high-quality pharmaceutical products across 12 therapeutic categories — trusted by pharmacies and healthcare providers across the region.
+    </p>
+    <div class="hero-actions">
+      <a href="catalogue.html" class="btn-primary">
+        View Products
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="about.html" class="btn-text">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item">
+        <div class="hs-num">90<span style="font-size:0.6em;opacity:0.6">+</span></div>
+        <div class="hs-label">Products</div>
+      </div>
+      <div class="hs-item">
+        <div class="hs-num">12</div>
+        <div class="hs-label">Therapeutic Areas</div>
+      </div>
+      <div class="hs-item">
+        <div class="hs-num">GMP</div>
+        <div class="hs-label">Certified</div>
+      </div>
     </div>
   </div>
 
-  <script>
-    const splash = document.getElementById('splash');
-    setTimeout(() => {
-      splash.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = 'home.html';
-      }, 1500); // matches the 2s fade-out duration
-    }, 2000); // wait 3s before starting fade-out
-  </script>
+  <div class="hero-right">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-visual-content">
+      <div class="hero-logo-animation">
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+        <div class="hero-logo-core">
+          <svg viewBox="0 0 100 130" fill="none">
+            <rect class="li-top" x="22" y="2" width="56" height="14" rx="3" fill="#00B5AD"/>
+            <rect class="li-mid" x="43" y="2" width="14" height="126" rx="3" fill="#00B5AD"/>
+            <rect class="li-bot" x="22" y="114" width="56" height="14" rx="3" fill="#00B5AD"/>
+            <ellipse class="li-ellipse" cx="50" cy="82" rx="38" ry="18" stroke="#00B5AD" stroke-width="4" fill="none"/>
+            <path class="li-snake" d="M50 20 C66 34 68 54 56 68 C46 80 40 86 40 106" stroke="#2DD4CC" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <circle class="li-dot" cx="64" cy="22" r="7" fill="#2DD4CC"/>
+          </svg>
+        </div>
+        <!-- Floating info cards -->
+        <div class="hero-card">
+          <div class="hc-label">Monthly Tier</div>
+          <div class="hc-value teal">Elite</div>
+          <div class="hc-sub">Top loyalty tier</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">Product Range</div>
+          <div class="hc-value">107</div>
+          <div class="hc-sub">Active medicines</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">Certification</div>
+          <div class="hc-value teal">GMP ✓</div>
+          <div class="hc-sub">Verified quality</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Antibiotics</span>
+    <span class="teal">Cardiovascular</span>
+    <span>Antidiabetics</span>
+    <span class="teal">CNS / Neurological</span>
+    <span>Analgesics & NSAIDs</span>
+    <span class="teal">Gastrointestinal</span>
+    <span>Respiratory & Cough</span>
+    <span class="teal">Antihistamines</span>
+    <span>Corticosteroids</span>
+    <span class="teal">Lipid-Lowering</span>
+    <span>Topical / Dermatology</span>
+    <span class="teal">Vitamins & Supplements</span>
+    <!-- duplicate for seamless loop -->
+    <span>Antibiotics</span>
+    <span class="teal">Cardiovascular</span>
+    <span>Antidiabetics</span>
+    <span class="teal">CNS / Neurological</span>
+    <span>Analgesics & NSAIDs</span>
+    <span class="teal">Gastrointestinal</span>
+    <span>Respiratory & Cough</span>
+    <span class="teal">Antihistamines</span>
+    <span>Corticosteroids</span>
+    <span class="teal">Lipid-Lowering</span>
+    <span>Topical / Dermatology</span>
+    <span class="teal">Vitamins & Supplements</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-inner">
+    <div class="mission-label reveal">
+      <div class="ml-tag">Our Ambition</div>
+      <h2 class="ml-title">Quality<br><em>Made with</em><br>Purpose</h2>
+    </div>
+    <div class="mission-body">
+      <p class="mission-statement reveal">
+        <em>"Quality for your health"</em> — ensuring premium pharmaceutical manufacturing is the guiding principle of <strong>everything we do.</strong>
+      </p>
+      <div class="mission-text reveal">
+        <p>Island Laboratoire was founded on a conviction that quality medicines should reach every community that needs them. We manufacture essential pharmaceuticals spanning antibiotics, cardiovascular agents, antidiabetics, and beyond — each product built on internationally recognised INN formulations.</p>
+        <p>We serve pharmacies, clinics, hospitals and distributors across the region as a trusted long-term partner. Our commitment to GMP compliance, scientific rigour and supply reliability underpins everything we produce.</p>
+      </div>
+      <div class="mission-pillars">
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-icon">🔬</div>
+          <h3>Scientific Foundation</h3>
+          <p>Every formulation is grounded in evidence-based medicine and internationally recognised INN standards.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">✅</div>
+          <h3>GMP Certified</h3>
+          <p>Rigorous Good Manufacturing Practice compliance on every batch, every time — without exception.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-icon">🌏</div>
+          <h3>Regional Reach</h3>
+          <p>Supplying essential medicines to pharmacies, clinics and distributors across Southeast Asia.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">🤝</div>
+          <h3>Trusted Partners</h3>
+          <p>Long-term relationships built on reliability, transparency and consistent supply.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header reveal">
+    <div class="ph-left">
+      <div class="ph-tag">Product Portfolio</div>
+      <h2 class="ph-title">Our <em>Medicines</em></h2>
+    </div>
+    <a href="catalogue.html" class="ph-link">View full catalogue</a>
+  </div>
+
+  <div class="cat-scroll reveal" id="catScroll"></div>
+  <div class="products-scroll" id="productsScroll"></div>
+</section>
+
+<!-- STATEMENT BAND -->
+<div class="statement-band reveal">
+  <div class="sb-inner">
+    <div class="sb-tag">For more than a generation</div>
+    <p class="sb-quote">
+      We believe every patient deserves access to<br>
+      <em>safe, effective, quality-assured</em> medicine —<br>
+      wherever they are.
+    </p>
+    <p class="sb-source">— Island Laboratoire Co., Ltd. · Cambodia</p>
+  </div>
+</div>
+
+<!-- THERAPEUTIC AREAS -->
+<section id="areas">
+  <div class="areas-header reveal">
+    <div class="areas-tag">Therapeutic Areas</div>
+    <h2 class="areas-title">12 Areas of <em>Care</em></h2>
+  </div>
+  <div class="areas-grid reveal">
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🦠</div><div class="at-name">Antibiotics</div><div class="at-count">16 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">❤️</div><div class="at-name">Cardiovascular</div><div class="at-count">15 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🩸</div><div class="at-name">Antidiabetics</div><div class="at-count">10 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🧠</div><div class="at-name">CNS / Neurological</div><div class="at-count">8 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">💊</div><div class="at-name">Analgesics / NSAIDs</div><div class="at-count">14 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🫃</div><div class="at-name">Gastrointestinal</div><div class="at-count">18 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🫁</div><div class="at-name">Respiratory & Cough</div><div class="at-count">3 Products</div><div class="at-arrow">→</div></a>
+    <a href="catalogue.html" class="area-tile"><div class="at-icon">🧴</div><div class="at-name">Topical / Dermatology</div><div class="at-count">5 Products</div><div class="at-arrow">→</div></a>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="news-header reveal">
+    <div>
+      <div class="nh-tag">News & Stories</div>
+      <h2 class="nh-title">Up to <em>Date</em></h2>
+    </div>
+    <a href="news.html" class="ph-link">All news</a>
+  </div>
+  <div class="news-grid reveal">
+    <a href="news.html" class="news-card">
+      <div class="nc-img" style="background:linear-gradient(135deg,#E0FAF9,#C8EEEC)">🏭</div>
+      <div class="nc-body">
+        <div class="nc-cat">Manufacturing · Featured</div>
+        <div class="nc-title">Island Laboratoire Expands Antidiabetic Portfolio with Three New Combination Products</div>
+        <div class="nc-excerpt">GLUCOEMPA and SITTINMET series now available — combining SGLT2 inhibitors with Metformin for improved glycaemic management in type 2 diabetes.</div>
+        <div class="nc-date">December 2024</div>
+      </div>
+    </a>
+    <a href="news.html" class="news-card">
+      <div class="nc-img" style="background:linear-gradient(135deg,#FFCDD2,#FFEBEE)">❤️</div>
+      <div class="nc-body">
+        <div class="nc-cat">Cardiovascular</div>
+        <div class="nc-title">TELMAC-AM Combination Series Available in Three Strengths</div>
+        <div class="nc-date">November 2024</div>
+      </div>
+    </a>
+    <a href="news.html" class="news-card">
+      <div class="nc-img" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)">🔬</div>
+      <div class="nc-body">
+        <div class="nc-cat">Quality & Compliance</div>
+        <div class="nc-title">Annual GMP Audit Completed — Full Compliance Confirmed</div>
+        <div class="nc-date">October 2024</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-tag">Ready to Partner</div>
+    <h2 class="cta-title">Your <em>Trusted</em><br>Pharma Partner</h2>
+    <p class="cta-body">Whether you are a pharmacy, hospital, clinic or distributor — Island Laboratoire is your reliable source for quality essential medicines.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-white">Contact Our Team</a>
+      <a href="catalogue.html" class="btn-ghost-white">Browse Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-logo">
+        <div class="fb-mark">
+          <svg viewBox="0 0 100 100" fill="none">
+            <rect x="40" y="8" width="20" height="84" rx="3" fill="#00B5AD"/>
+            <rect x="28" y="8" width="44" height="12" rx="3" fill="#00B5AD"/>
+            <rect x="28" y="80" width="44" height="12" rx="3" fill="#00B5AD"/>
+            <ellipse cx="50" cy="54" rx="28" ry="14" stroke="#00B5AD" stroke-width="4" fill="none"/>
+          </svg>
+        </div>
+        <span class="fb-name">Island Laboratoire</span>
+      </div>
+      <p>Your trusted pharmaceutical manufacturing partner — delivering quality medicines across 12 therapeutic categories in Cambodia and the region.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="about.html">Our Mission</a>
+      <a href="about.html">Quality & GMP</a>
+      <a href="careers.html">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="catalogue.html">Full Catalogue</a>
+      <a href="catalogue.html">Antibiotics</a>
+      <a href="catalogue.html">Cardiovascular</a>
+      <a href="catalogue.html">Antidiabetics</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Enquiries</a>
+      <a href="contact.html">Distribution</a>
+      <a href="contact.html">Regulatory Docs</a>
+      <a href="news.html">News</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Island Laboratoire Co., Ltd. All rights reserved.</p>
+    <p class="footer-disclaimer">For professional use only — pharmacies, hospitals and licensed medical practitioners. Not for direct consumer use.</p>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ── MOBILE MENU ──
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// ── REVEAL OBSERVER ──
+const revealObs = new IntersectionObserver(entries =>
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.08 }
+);
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── PRODUCTS ──
+const products = [
+  {id:1,name:"AURIO-250",inn:"Tetracycline HCl 250 mg",cat:"Antibiotics",bg:"linear-gradient(135deg,#FFF3E0,#FFE0B2)",emoji:"🟠"},
+  {id:4,name:"ILAFLOX-500",inn:"Ciprofloxacin 500 mg",cat:"Antibiotics",bg:"linear-gradient(135deg,#E0FAF9,#C8EEEC)",emoji:"🟢"},
+  {id:5,name:"ILAMOX-250 HK",inn:"Amoxicillin 250 mg",cat:"Antibiotics",bg:"linear-gradient(135deg,#EDE9FE,#DDD6FE)",emoji:"🟣"},
+  {id:39,name:"AMLODURA-10",inn:"Amlodipine 10 mg",cat:"Cardiovascular",bg:"linear-gradient(135deg,#FEE2E2,#FECACA)",emoji:"❤️"},
+  {id:49,name:"TELMAC 40",inn:"Telmisartan 40 mg",cat:"Cardiovascular",bg:"linear-gradient(135deg,#EDE9FE,#C4B5FD)",emoji:"💜"},
+  {id:54,name:"EMPASS-10",inn:"Empagliflozin 10 mg",cat:"Antidiabetics",bg:"linear-gradient(135deg,#D1FAE5,#A7F3D0)",emoji:"💚"},
+  {id:60,name:"SITTIN-100",inn:"Sitagliptin 100 mg",cat:"Antidiabetics",bg:"linear-gradient(135deg,#FEF3DC,#FDE8B0)",emoji:"🟡"},
+  {id:82,name:"ATONIX-10",inn:"Atorvastatin 10 mg",cat:"Lipid-Lowering",bg:"linear-gradient(135deg,#DBEAFE,#BFDBFE)",emoji:"🔵"},
+  {id:100,name:"GASPRAZOL-20",inn:"Omeprazole 20 mg",cat:"Gastrointestinal",bg:"linear-gradient(135deg,#FFEDD5,#FED7AA)",emoji:"🟠"},
+  {id:106,name:"ILA C-500",inn:"Vitamin C 500 mg",cat:"Vitamins & Supplements",bg:"linear-gradient(135deg,#FEF9C3,#FDE68A)",emoji:"⭐"},
+];
+
+const categories = ['All', ...new Set(products.map(p => p.cat))];
+let activeCat = 'All';
+
+function buildCatChips() {
+  const el = document.getElementById('catScroll');
+  el.innerHTML = categories.map(cat =>
+    `<div class="cat-chip ${cat==='All'?'active':''}" onclick="setCat('${cat}',this)">${cat}</div>`
+  ).join('');
+}
+
+function setCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function renderProducts() {
+  const filtered = activeCat === 'All' ? products : products.filter(p => p.cat === activeCat);
+  document.getElementById('productsScroll').innerHTML = filtered.map(p => `
+    <div class="prod-card" onclick="window.location='catalogue.html'">
+      <div class="prod-visual" style="background:${p.bg}">${p.emoji}</div>
+      <div class="prod-body">
+        <div class="prod-num">#${String(p.id).padStart(3,'0')}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-inn">${p.inn}</div>
+        <div class="prod-cat">${p.cat}</div>
+      </div>
+    </div>`).join('');
+}
+
+buildCatChips();
+renderProducts();
+</script>
+
+<script src="translation.js"></script>
 </body>
 </html>

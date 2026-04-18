@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers – Island Laboratoire</title>
+<style>
+/* ═══════════════════════════════════════════════
+   ISLAND LABORATOIRE — SHARED STYLESHEET
+   ═══════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --teal:       #00B5AD;
+  --teal-dark:  #008F88;
+  --teal-light: #2DD4CC;
+  --teal-pale:  #E0FAF9;
+  --teal-pale2: #C2F2F0;
+  --white:      #FFFFFF;
+  --off-white:  #F6FEFE;
+  --gray-light: #F0F9F9;
+  --ink:        #0A2E2C;
+  --ink-mid:    #1B4E4B;
+  --ink-soft:   #3D7470;
+  --border:     rgba(0,181,173,0.20);
+  --shadow:     0 4px 32px rgba(0,181,173,0.13);
+  --shadow-lg:  0 12px 56px rgba(0,181,173,0.20);
+  --nav-h:      72px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; height: var(--nav-h);
+  background: rgba(255,255,255,0.93);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 24px rgba(0,181,173,0.07);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo .lt-brand { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: .08em; color: var(--teal); }
+.nav-logo .lt-sub { font-family: 'Space Mono', monospace; font-size: 8.5px; letter-spacing: .22em; color: var(--ink-soft); text-transform: uppercase; margin-top: 2px; display: block; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--ink-soft); transition: color .2s; padding: 4px 0; border-bottom: 2px solid transparent; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); border-bottom-color: var(--teal); }
+.nav-cta { background: var(--teal) !important; color: #fff !important; padding: 10px 22px; border-radius: 6px; font-weight: 600 !important; box-shadow: 0 4px 14px rgba(0,181,173,.35); transition: background .2s, transform .15s !important; border-bottom: none !important; border-radius: 6px !important; }
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 4px 0; border-radius: 2px; transition: all .3s; }
+.mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--border); padding: 20px 6vw 28px; z-index: 199; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; font-size: 16px; font-weight: 500; color: var(--ink-soft); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--teal); }
+
+/* ── PAGE HERO (inner pages) ── */
+.page-hero {
+  padding: calc(var(--nav-h) + 60px) 8vw 70px;
+  background: linear-gradient(135deg, #E8FAFA 0%, #fff 50%, #F0FEFD 100%);
+  position: relative; overflow: hidden;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,181,173,.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 60% 60% at 90% 50%, black, transparent);
+}
+.page-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+.page-tag { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.page-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--teal); border-radius: 2px; }
+.page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); line-height: .93; letter-spacing: .02em; color: var(--ink); }
+.page-hero h1 .teal { color: var(--teal); }
+.page-hero p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); margin-top: 18px; max-width: 560px; }
+
+/* ── SECTION SHARED ── */
+.section-tag { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.section-tag::before { content: ''; display: block; width: 22px; height: 2px; background: var(--teal); border-radius: 2px; }
+h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 4.5vw, 58px); letter-spacing: .03em; line-height: 1; color: var(--ink); }
+h2 .teal { color: var(--teal); }
+
+/* ── BUTTONS ── */
+.btn-primary { background: var(--teal); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 30px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 24px rgba(0,181,173,.35); transition: background .2s, box-shadow .2s, transform .15s; }
+.btn-primary:hover { background: var(--teal-dark); box-shadow: 0 10px 36px rgba(0,181,173,.5); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--teal); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 12px 26px; border: 1.5px solid var(--teal); border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+.btn-outline:hover { background: var(--teal); color: #fff; }
+
+/* ── MARQUEE ── */
+.marquee-wrap { background: var(--teal); padding: 13px 0; overflow: hidden; }
+.marquee-track { display: flex; animation: marquee 32s linear infinite; white-space: nowrap; }
+.marquee-track span { display: inline-flex; align-items: center; gap: 20px; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.9); padding: 0 20px; }
+.marquee-track span::before { content: '✦'; font-size: 8px; opacity: .6; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 60px 8vw 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.footer-brand-col .fb-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .1em; color: var(--teal); }
+.footer-brand-col p { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.7; margin-top: 12px; max-width: 240px; }
+.footer-col h4 { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,.25); }
+.footer-disclaimer { font-size: 11px; color: rgba(255,255,255,.2); max-width: 420px; line-height: 1.6; text-align: right; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes spin   { from { transform:rotate(0); } to { transform:rotate(360deg); } }
+@keyframes pulse  { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+@keyframes drawSnake { to { stroke-dashoffset: 0; } }
+@keyframes popIn { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+
+/* LOGO SVG Animations */
+.logo-i-top  { animation: fadeUp .8s .2s ease both; }
+.logo-i-mid  { transform-origin: 50% 50%; animation: scaleIn .8s .4s ease both; }
+.logo-i-bot  { animation: fadeUp .8s .2s ease both; }
+.logo-ellipse{ stroke-dasharray:200; stroke-dashoffset:200; animation: drawEllipse 1.2s .6s ease forwards; }
+.logo-snake  { stroke-dasharray:300; stroke-dashoffset:300; animation: drawSnake 1.5s .9s ease forwards; }
+.logo-dot    { opacity:0; animation: popIn .3s 2.3s ease forwards; }
+@keyframes scaleIn    { from{opacity:0;transform:scaleY(0)} to{opacity:1;transform:scaleY(1)} }
+@keyframes drawEllipse{ to{stroke-dashoffset:0} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; }
+  .footer-disclaimer { text-align: left; }
+}
+
+</style>
+<style>
+/* WHY WORK HERE */
+#why-work { padding:100px 8vw; background:#fff; }
+.why-work-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.wwg-text p { font-size:16px; line-height:1.8; color:var(--ink-soft); margin-top:20px; }
+.perks-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.perk-card { background:var(--off-white); border:1px solid var(--border); border-radius:14px; padding:22px; transition:all .25s; }
+.perk-card:hover { background:var(--teal-pale); border-color:var(--teal-pale2); transform:translateY(-2px); }
+.perk-icon { font-size:24px; margin-bottom:10px; }
+.perk-card h4 { font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:.06em; color:var(--ink); margin-bottom:5px; }
+.perk-card p { font-size:12.5px; color:var(--ink-soft); line-height:1.55; }
+
+/* OPEN ROLES */
+#open-roles { padding:100px 8vw; background:var(--gray-light); }
+.roles-filter { display:flex; gap:10px; flex-wrap:wrap; margin:32px 0 24px; }
+.rf-btn { background:#fff; border:1.5px solid var(--border); border-radius:99px; color:var(--ink-soft); font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:500; padding:7px 18px; cursor:pointer; transition:all .2s; }
+.rf-btn:hover, .rf-btn.active { background:var(--teal); border-color:var(--teal); color:#fff; }
+.jobs-list { display:flex; flex-direction:column; gap:16px; }
+.job-card { background:#fff; border:1.5px solid var(--border); border-radius:16px; padding:28px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; transition:all .25s; cursor:pointer; }
+.job-card:hover { border-color:var(--teal-pale2); box-shadow:var(--shadow-lg); transform:translateX(4px); }
+.job-info {}
+.job-dept { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.job-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.05em; color:var(--ink); margin-bottom:8px; }
+.job-meta { display:flex; gap:16px; flex-wrap:wrap; }
+.job-tag { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--ink-soft); }
+.job-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--teal-pale2); flex-shrink:0; }
+.job-apply { flex-shrink:0; }
+.no-jobs { text-align:center; padding:60px 0; color:var(--ink-soft); font-size:15px; }
+
+/* CULTURE */
+#culture { padding:100px 8vw; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); }
+#culture h2 { color:#fff; }
+#culture .section-tag { color:rgba(255,255,255,.7); }
+#culture .section-tag::before { background:rgba(255,255,255,.5); }
+.culture-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
+.culture-card { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); border-radius:16px; padding:32px 26px; backdrop-filter:blur(10px); }
+.culture-card .cc-icon { font-size:32px; margin-bottom:14px; }
+.culture-card h3 { font-family:'Bebas Neue',sans-serif; font-size:21px; letter-spacing:.06em; color:#fff; margin-bottom:8px; }
+.culture-card p { font-size:14px; color:rgba(255,255,255,.72); line-height:1.7; }
+
+/* APPLICATION FORM */
+#apply { padding:100px 8vw; background:#fff; display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+.apply-info p { font-size:16px; line-height:1.75; color:var(--ink-soft); margin-top:20px; }
+.apply-steps { margin-top:36px; }
+.apply-step { display:flex; gap:16px; margin-bottom:24px; }
+.as-num { width:36px; height:36px; background:var(--teal-pale); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--teal); flex-shrink:0; }
+.as-text h4 { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:.05em; color:var(--ink); margin-bottom:3px; }
+.as-text p { font-size:13px; color:var(--ink-soft); line-height:1.6; }
+.apply-form {}
+.form-group { margin-bottom:18px; }
+.form-group label { display:block; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mid); margin-bottom:7px; }
+.form-group input, .form-group select, .form-group textarea { width:100%; background:var(--off-white); border:1.5px solid var(--border); border-radius:8px; color:var(--ink); font-family:'DM Sans',sans-serif; font-size:14px; padding:12px 16px; outline:none; transition:border-color .2s; appearance:none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,181,173,.1); }
+.form-group textarea { min-height:100px; resize:vertical; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-submit { background:var(--teal); color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; padding:15px 36px; border:none; border-radius:8px; cursor:pointer; box-shadow:0 6px 20px rgba(0,181,173,.35); transition:all .2s; }
+.form-submit:hover { background:var(--teal-dark); transform:translateY(-1px); }
+
+@media(max-width:900px) { .why-work-grid{grid-template-columns:1fr} .culture-grid{grid-template-columns:1fr 1fr} #apply{grid-template-columns:1fr} .job-card{flex-direction:column;align-items:flex-start} }
+@media(max-width:600px) { .culture-grid{grid-template-columns:1fr} .perks-grid{grid-template-columns:1fr} .form-row{grid-template-columns:1fr} }
+</style>
+</head>
+<body data-page="careers">
+<div id="nav-mount"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-tag">Careers</div>
+    <h1>GROW WITH<br><span class="teal">ISLAND LAB</span></h1>
+    <p>Join a team committed to manufacturing quality medicines that make a real difference. We're looking for passionate, dedicated people to help us grow.</p>
+  </div>
+</div>
+
+<!-- WHY WORK HERE -->
+<section id="why-work">
+  <div class="why-work-grid">
+    <div class="wwg-text reveal">
+      <div class="section-tag">Why Join Us</div>
+      <h2>MORE THAN A <span class="teal">JOB</span></h2>
+      <p>At Island Laboratoire, every role contributes directly to patient health outcomes. Whether you're in manufacturing, quality assurance, regulatory affairs or sales — your work helps ensure that people receive safe, effective medicines.</p>
+      <p>We invest in our people with ongoing training, clear career pathways, and a culture of scientific excellence and collaboration.</p>
+    </div>
+    <div class="perks-grid reveal">
+      <div class="perk-card"><div class="perk-icon">🎓</div><h4>Training & Growth</h4><p>Continuous professional development, GMP training and certification support.</p></div>
+      <div class="perk-card"><div class="perk-icon">💼</div><h4>Career Pathways</h4><p>Clear progression frameworks across technical, scientific and commercial roles.</p></div>
+      <div class="perk-card"><div class="perk-icon">🏥</div><h4>Health Benefits</h4><p>Comprehensive medical coverage for employees and dependents.</p></div>
+      <div class="perk-card"><div class="perk-icon">🌱</div><h4>Meaningful Work</h4><p>Every day your work contributes to patient health in our communities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN ROLES -->
+<section id="open-roles">
+  <div class="reveal">
+    <div class="section-tag">Open Positions</div>
+    <h2>CURRENT <span class="teal">OPENINGS</span></h2>
+  </div>
+  <div class="roles-filter">
+    <button class="rf-btn active" onclick="filterJobs('all',this)">All Departments</button>
+    <button class="rf-btn" onclick="filterJobs('manufacturing',this)">Manufacturing</button>
+    <button class="rf-btn" onclick="filterJobs('qa',this)">Quality & Regulatory</button>
+    <button class="rf-btn" onclick="filterJobs('commercial',this)">Commercial</button>
+    <button class="rf-btn" onclick="filterJobs('rd',this)">R&D</button>
+  </div>
+  <div class="jobs-list" id="jobsList"></div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+  <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+    <div class="section-tag" style="justify-content:center">Life at Island Lab</div>
+    <h2>OUR CULTURE</h2>
+  </div>
+  <div class="culture-grid">
+    <div class="culture-card reveal"><div class="cc-icon">🤝</div><h3>Collaboration</h3><p>Cross-functional teams working together — from lab to logistics, quality to commercial.</p></div>
+    <div class="culture-card reveal"><div class="cc-icon">🔬</div><h3>Scientific Excellence</h3><p>A culture that values rigour, evidence, and continuous improvement in everything we do.</p></div>
+    <div class="culture-card reveal"><div class="cc-icon">🌱</div><h3>Growth Mindset</h3><p>We celebrate learning from challenges and support every team member's development.</p></div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply">
+  <div class="apply-info reveal">
+    <div class="section-tag">Apply Now</div>
+    <h2>SEND YOUR <span class="teal">APPLICATION</span></h2>
+    <p>Don't see a role that matches? We welcome speculative applications from talented individuals. Send us your CV and tell us how you'd like to contribute to Island Laboratoire.</p>
+    <div class="apply-steps">
+      <div class="apply-step"><div class="as-num">1</div><div class="as-text"><h4>Submit Application</h4><p>Fill in the form with your details, role interest and motivation.</p></div></div>
+      <div class="apply-step"><div class="as-num">2</div><div class="as-text"><h4>Initial Review</h4><p>Our HR team reviews applications within 5–7 business days.</p></div></div>
+      <div class="apply-step"><div class="as-num">3</div><div class="as-text"><h4>Interview Process</h4><p>Two-stage interviews: initial HR screen, then technical panel.</p></div></div>
+      <div class="apply-step"><div class="as-num">4</div><div class="as-text"><h4>Offer & Onboarding</h4><p>Successful candidates receive a formal offer and structured onboarding plan.</p></div></div>
+    </div>
+  </div>
+  <form class="apply-form reveal" onsubmit="handleApply(event)">
+    <div class="form-row">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="Jean" required></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Dupont" required></div>
+    </div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com" required></div>
+    <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+855 000 000 000"></div>
+    <div class="form-group"><label>Department of Interest</label>
+      <select>
+        <option value="">Select…</option>
+        <option>Manufacturing / Production</option>
+        <option>Quality Assurance / QC</option>
+        <option>Regulatory Affairs</option>
+        <option>Sales & Commercial</option>
+        <option>Research & Development</option>
+        <option>Finance & Administration</option>
+        <option>Other / Speculative</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Years of Experience</label>
+      <select><option value="">Select…</option><option>0–2 years</option><option>3–5 years</option><option>6–10 years</option><option>10+ years</option></select>
+    </div>
+    <div class="form-group"><label>Cover Letter / Motivation</label><textarea placeholder="Tell us why you'd like to join Island Laboratoire and what you bring to the team…" required></textarea></div>
+    <button type="submit" class="form-submit">Submit Application →</button>
+  </form>
+</section>
+
+<div id="footer-mount"></div>
+<script>
+// ═══════════════════════════════════════
+// ISLAND LABORATOIRE — SHARED JS
+// ═══════════════════════════════════════
+
+// ── NAV HTML injected into every page ──
+const NAV_HTML = `
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
+      <rect x="40" y="8" width="20" height="84" rx="3" fill="#00B5AD"/>
+      <rect x="28" y="8" width="44" height="12" rx="3" fill="#00B5AD"/>
+      <rect x="28" y="80" width="44" height="12" rx="3" fill="#00B5AD"/>
+      <ellipse cx="50" cy="54" rx="28" ry="14" stroke="#00B5AD" stroke-width="4" fill="none"/>
+      <path d="M50 18 C63 30 65 44 56 56 C50 64 44 68 44 80" stroke="#2DD4CC" stroke-width="5" fill="none" stroke-linecap="round"
+            style="stroke-dasharray:120;stroke-dashoffset:120;animation:drawSnake 1.5s 1s ease forwards"/>
+      <circle cx="57" cy="19" r="5" fill="#2DD4CC" style="opacity:0;animation:popIn .3s 2.4s ease forwards"/>
+    </svg>
+    <div>
+      <span class="lt-brand">IsLAnD</span>
+      <span class="lt-sub">Laboratoire</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html"     data-page="index">Home</a></li>
+    <li><a href="about.html"     data-page="about">About Us</a></li>
+    <li><a href="catalogue.html" data-page="catalogue">Products</a></li>
+    <li><a href="news.html"      data-page="news">News</a></li>
+    <li><a href="careers.html"   data-page="careers">Careers</a></li>
+    <li><a href="contact.html"   data-page="contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index (3).html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="catalogue.html">Products</a>
+  <a href="news.html">News</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>`;
+
+// ── FOOTER HTML ──
+const FOOTER_HTML = `
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Antibiotics</span><span>Cardiovascular</span><span>Antidiabetics</span><span>CNS / Neurological</span><span>Analgesics</span><span>Gastrointestinal</span><span>Respiratory</span><span>Antihistamines</span><span>Corticosteroids</span><span>Lipid-Lowering</span><span>Topical Dermatology</span><span>Vitamins &amp; Supplements</span>
+    <span>Antibiotics</span><span>Cardiovascular</span><span>Antidiabetics</span><span>CNS / Neurological</span><span>Analgesics</span><span>Gastrointestinal</span><span>Respiratory</span><span>Antihistamines</span><span>Corticosteroids</span><span>Lipid-Lowering</span><span>Topical Dermatology</span><span>Vitamins &amp; Supplements</span>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <div class="fb-name">IsLAnD Laboratoire</div>
+      <p>Your trusted pharmaceutical manufacturing partner — delivering quality medicines across 12 therapeutic categories.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="catalogue.html">Products</a>
+      <a href="news.html">News</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Therapeutic Areas</h4>
+      <a href="catalogue.html">Antibiotics</a>
+      <a href="catalogue.html">Cardiovascular</a>
+      <a href="catalogue.html">Antidiabetics</a>
+      <a href="catalogue.html">CNS / Neurological</a>
+      <a href="catalogue.html">Gastrointestinal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Professional</h4>
+      <a href="catalogue.html">Product Catalogue</a>
+      <a href="contact.html">Enquiries</a>
+      <a href="contact.html">Distribution</a>
+      <a href="contact.html">Regulatory Docs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Island Laboratoire. All rights reserved.</p>
+    <p class="footer-disclaimer">For professional use only — pharmacies, hospitals and licensed medical practitioners. Not for direct consumer use.</p>
+  </div>
+</footer>`;
+
+// ── INJECT & INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Inject nav
+  const navMount = document.getElementById('nav-mount');
+  if (navMount) navMount.innerHTML = NAV_HTML;
+
+  // Inject footer
+  const footerMount = document.getElementById('footer-mount');
+  if (footerMount) footerMount.innerHTML = FOOTER_HTML;
+
+  // Mark active nav link
+  const page = document.body.dataset.page;
+  document.querySelectorAll('[data-page]').forEach(a => {
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+});
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+</script>
+<script>
+const jobs = [
+  { title:'Production Pharmacist', dept:'Manufacturing', type:'Full-time', location:'On-site', experience:'3–5 years', tag:'manufacturing' },
+  { title:'QA Officer – Batch Release', dept:'Quality Assurance', type:'Full-time', location:'On-site', experience:'2–4 years', tag:'qa' },
+  { title:'Regulatory Affairs Specialist', dept:'Regulatory', type:'Full-time', location:'On-site', experience:'3–6 years', tag:'qa' },
+  { title:'Medical Sales Representative', dept:'Commercial', type:'Full-time', location:'Field-based', experience:'2–5 years', tag:'commercial' },
+  { title:'Key Account Manager – Pharmacy', dept:'Commercial', type:'Full-time', location:'Field-based', experience:'4–7 years', tag:'commercial' },
+  { title:'Formulation Development Scientist', dept:'R&D', type:'Full-time', location:'On-site', experience:'3–5 years', tag:'rd' },
+  { title:'Manufacturing Technician', dept:'Manufacturing', type:'Full-time', location:'On-site', experience:'1–3 years', tag:'manufacturing' },
+  { title:'Supply Chain Coordinator', dept:'Operations', type:'Full-time', location:'On-site', experience:'2–4 years', tag:'manufacturing' },
+];
+
+function renderJobs(filtered) {
+  const list = document.getElementById('jobsList');
+  if (!filtered.length) { list.innerHTML = '<div class="no-jobs">No open positions in this department right now. Send a speculative application below!</div>'; return; }
+  list.innerHTML = filtered.map(j => `
+    <div class="job-card reveal">
+      <div class="job-info">
+        <div class="job-dept">${j.dept}</div>
+        <div class="job-title">${j.title}</div>
+        <div class="job-meta">
+          <span class="job-tag">${j.type}</span>
+          <span class="job-tag">${j.location}</span>
+          <span class="job-tag">${j.experience} experience</span>
+        </div>
+      </div>
+      <div class="job-apply">
+        <a href="#apply" class="btn-primary" style="font-size:13px;padding:10px 22px">Apply Now</a>
+      </div>
+    </div>`).join('');
+  // Re-observe new reveals
+  document.querySelectorAll('.job-card.reveal').forEach(el => {
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08});
+    obs.observe(el);
+  });
+}
+
+function filterJobs(tag, btn) {
+  document.querySelectorAll('.rf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderJobs(tag === 'all' ? jobs : jobs.filter(j => j.tag === tag));
+}
+
+function handleApply(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Application Submitted!';
+  btn.style.background = 'var(--teal-dark)';
+  setTimeout(() => { btn.textContent = 'Submit Application →'; btn.style.background = ''; }, 4000);
+}
+
+renderJobs(jobs);
+</script>
+</body>
+</html>
